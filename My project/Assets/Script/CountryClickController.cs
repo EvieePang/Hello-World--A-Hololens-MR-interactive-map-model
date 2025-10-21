@@ -6,6 +6,18 @@ using System.Collections.Generic;
 /// 点击国家 → 居中放大 + 红色边界 + 半透明 + 标签（整合 CountryHighlighter 全逻辑）
 public class CountryClickController : MonoBehaviour
 {
+    [Header("Audio Settings")]
+    public AudioSource audioSource;   // 播放器组件（统一播放）
+    [Tooltip("配置国家与音频的映射表")]
+    public List<CountryAudio> countryAudios = new List<CountryAudio>();
+
+    [System.Serializable]
+    public class CountryAudio
+    {
+        public string countryName;   // 国家名（必须和 GameObject 名字一致）
+        public AudioClip clip;       // 对应的音频
+    }
+
     [Header("Scene References")]
     public Transform earthTransform;            // 拖 Earth
     public Transform cameraTransform;           // 拖 Main Camera
@@ -86,6 +98,24 @@ public class CountryClickController : MonoBehaviour
         if (currentAnim != null) StopCoroutine(currentAnim);
         currentAnim = StartCoroutine(RotateAndZoom(targetDir, camDir, country));
 
+        // === 播放对应国家音频（从 Resources/Audio/ 动态加载） ===
+        if (audioSource)
+        {
+            string audioPath = "Audio/" + country.name;  // 对应 Resources/Audio/<CountryName>
+            AudioClip clip = Resources.Load<AudioClip>(audioPath);
+
+            if (clip)
+            {
+                // 播放音频
+                audioSource.Stop();
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
+            else
+            {
+                Debug.LogWarning($"[CountryAudio] 没找到音频文件：{audioPath}");
+            }
+        }
     }
 
     // 半透明 + 红色边界（完整移植自 CountryHighlighter）
