@@ -13,50 +13,60 @@ public class ContextMenuSpawner : MonoBehaviour
     public Transform xrCamera;               
 
     private static GameObject activeMenu;
+    [SerializeField] private LayerMask countryMask; // only include countries
+    [SerializeField] private LayerMask globeMask;   // only include EarthLayer (Sphere/Mesh Collider)
 
     // XRSimpleInteractable.SelectEntered Event activate
     public void ShowMenu()
     {
-        Debug.Log("[ContextMenuSpawner] ShowMenu() ±»µ÷ÓÃ");
         if (!menuPrefab || !earth) return;
+        if (activeMenu) Destroy(activeMenu);
 
-        // delete old one
-        //if (activeMenu) Destroy(activeMenu);
-
-        // come to world space
         activeMenu = Instantiate(menuPrefab, uiRoot ? uiRoot : null);
 
-        // LayerMenu 
-        var menu = activeMenu.GetComponentInChildren<LayerMenu>(true);
-        if (menu) menu.target = earth;
-
-        // set to follow the components (orientate to camera and avoid overlay)
-        var follow = activeMenu.GetComponentInChildren<NonOccludingFollow>(true);
-        if (follow)
+        var menu = activeMenu.GetComponent<LayerMenu>();
+        if (menu == null) menu = activeMenu.GetComponentInChildren<LayerMenu>(true);
+        if (menu)
         {
-            
-            if (xrCamera) follow.SetCamera(xrCamera);
-            follow.occlusionMask = earthMask;
+            menu.target = earth;
+            Debug.Log($"[ContextMenuSpawner] menu.target set to {earth.name}");
+        }
+        else
+        {
+            Debug.LogError("[ContextMenuSpawner] LayerMenu component not found on spawned menu prefab.");
+        }
 
-            Transform cam = xrCamera ? xrCamera : (Camera.main ? Camera.main.transform : null);
-            if (cam)
+        var follow = activeMenu.GetComponentInChildren<NonOccludingFollow>(true);
+        if (xrCamera) follow.SetCamera(xrCamera);
+        follow.occlusionMask = globeMask;   // consider to ward off the earth sphere
+
+        Transform cam = xrCamera ? xrCamera : (Camera.main ? Camera.main.transform : null);
+        if (!cam) return;
+
+        // 1) collide country to make sure of direction and distance
+        Vector3 dir = (transform.position - cam.position).normalized;
+        Ray ray1 = new Ray(cam.position, dir);
+
+        if (Physics.Raycast(ray1, out var hitCountry, 200f, countryMask, QueryTriggerInteraction.Collide))
+        {
+            // 2) do Raycast to earth sphere to get sphere's normal line
+            float maxDist = hitCountry.distance + 0.5f;
+            if (Physics.Raycast(ray1, out var hitGlobe, maxDist, globeMask, QueryTriggerInteraction.Collide))
             {
-                Vector3 dir = (transform.position - cam.position).normalized;
-                if (Physics.Raycast(cam.position, dir, out var hit, 50f, ~0, QueryTriggerInteraction.Collide))
-                {
-                    Vector3 normal = (hit.collider.transform == transform)
-                        ? hit.normal
-                        : (transform.position - earth.transform.position).normalized;
-
-                    follow.PlaceAt(hit.point, normal);
-                }
-                else
-                {
-                    Vector3 fallbackPoint = transform.position;
-                    Vector3 fallbackNormal = (transform.position - earth.transform.position).normalized;
-                    follow.PlaceAt(fallbackPoint, fallbackNormal);
-                }
+                follow.PlaceAt(hitGlobe.point, hitGlobe.normal); 
             }
+            else
+            {
+                Vector3 center = earth.transform.position;
+                Vector3 n = (hitCountry.point - center).normalized;
+                follow.PlaceAt(hitCountry.point, n);
+            }
+        }
+        else
+        {
+            // directly to toward the pivot direction of this country to send a line to the earth and obtain the normal line (when user tap oceans)
+            if (Physics.Raycast(ray1, out var hitGlobe, 200f, globeMask, QueryTriggerInteraction.Collide))
+                follow.PlaceAt(hitGlobe.point, hitGlobe.normal);
         }
     }
 
