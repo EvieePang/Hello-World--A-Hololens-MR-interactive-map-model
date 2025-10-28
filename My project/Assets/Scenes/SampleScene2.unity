@@ -1240,43 +1240,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.000007448106
+      value: -0.00000770951
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.000012103711
+      value: -0.000011883494
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.00000065740574
+      value: 0.00000084040335
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7506804
+      value: -0.79585475
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.25171098
+      value: -0.05389807
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.56771696
+      value: 0.5953795
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.22542866
+      value: 0.09609143
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -7.005
+      value: -1.641
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 76.68
+      value: 286.58002
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -38.972
+      value: -12.546
       objectReference: {fileID: 0}
     - target: {fileID: 2300784, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Enabled
@@ -1320,6 +1320,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1296122994}
+    - targetCorrespondingSourceObject: {fileID: 100056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1296122995}
     - targetCorrespondingSourceObject: {fileID: 101512, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1712467258}
@@ -1362,17 +1365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9383771b339ccf48a54af2b536b30d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1296122994}
-  countryAudios: []
-  earthTransform: {fileID: 1296122992}
-  cameraTransform: {fileID: 636881812}
-  labelPrefab: {fileID: 7396215898319562835, guid: 42a461def23717342b3dde2d89f58296, type: 3}
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
-  borderWidth: 0.02
-  normalPush: 0.001
-  transparentAlpha: 0.2
-  targetDistance: 2
-  rotationSpeed: 1.5
 --- !u!82 &1296122994
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1469,6 +1461,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1296122995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296122990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a6451b1abf22a44a74e2099c3ea1a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1296122994}
+  countryAudios: []
+  earthTransform: {fileID: 1296122992}
+  cameraTransform: {fileID: 636881812}
+  labelPrefab: {fileID: 7396215898319562835, guid: e664aeb44f038054aa665fbbf0a2d0d5, type: 3}
+  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  borderWidth: 0.02
+  normalPush: 0.001
+  transparentAlpha: 0.2
+  targetDistance: 2
+  rotationSpeed: 1.5
 --- !u!1 &1628972520
 GameObject:
   m_ObjectHideFlags: 0

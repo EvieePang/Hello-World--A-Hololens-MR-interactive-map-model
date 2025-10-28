@@ -36,6 +36,10 @@ public class CountryClickController : MonoBehaviour
     public float targetDistance = 2.0f;         // 相机到地心的距离（地球半径=1时建议 1.6~2.5）
     public float rotationSpeed = 1.5f;         // 旋转速度（越大越快）
 
+    //[Header("UI Controller")]
+    //public UIController uiController;
+
+
     // 运行时引用
     private GameObject currentLabel;
     private GameObject currentBorder;
@@ -116,6 +120,13 @@ public class CountryClickController : MonoBehaviour
                 Debug.LogWarning($"[CountryAudio] 没找到音频文件：{audioPath}");
             }
         }
+
+        //// 告诉UI显示面板并填入国家名
+        //if (uiController)
+        //{
+        //    uiController.ShowControlPanels(country.name);
+        //}
+
     }
 
     // 半透明 + 红色边界（完整移植自 CountryHighlighter）

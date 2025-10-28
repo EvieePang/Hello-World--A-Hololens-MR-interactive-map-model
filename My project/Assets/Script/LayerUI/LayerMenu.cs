@@ -1,5 +1,6 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class LayerMenu : MonoBehaviour
@@ -10,25 +11,38 @@ public class LayerMenu : MonoBehaviour
     [Header("Panels")]
     public GameObject panelRoot;    // top: Nature / Climate / Human Activity
     public GameObject panelNature;  // First: 
-    public GameObject panelClimate; // Second£ºPrecipitation / Temperature / Exit
+    public GameObject panelClimate; // Secondï¼šPrecipitation / Temperature / Exit
     public GameObject panelHumanActivity; // Third: Population/ Agriculture / Exit
-    
+    public InfoPanelController infoPanel;  //  å¼•ç”¨æ–°è„šæœ¬
+
 
     [Header("Layer Indices (corresponding EarthLayerSwitcher.layerMaterials)")]
     public int terrainIndex = 0;        // Nature correspond
     public int terrain1Index = 1;       // First
     public int terrain2Index = 2;
-    public int climateIndex = 3;        // Climate£¨when tap ¡°Climate¡±, change to it first£©
+    public int climateIndex = 3;        // Climateï¼ˆwhen tap â€œClimateâ€, change to it firstï¼‰
     public int precipitationIndex = 4;  // Second menu Precipitation
     public int temperatureIndex = 5;    // Second menu Temperature
     public int humanActivityIndex = 6;  // Human Activity
     public int populationIndex = 7;     // Third
-    public int agricultureIndex = 8;
+    public int agricultureIndex = 8;                                         
+
+    private string currentCountryName = "Unknown";
+
 
     private void Awake()
     {
         ShowRoot();  // default to show the top menu 3 buttons
     }
+
+    // =============================
+    // å¤–éƒ¨æ¥å£ï¼ˆContextMenuSpawner ä¼šè°ƒç”¨ï¼‰
+    // =============================
+    public void SetCountryName(string name)
+    {
+        currentCountryName = name;
+    }
+
 
     // ========== top menu ==========
     public void OnClickNature()
@@ -65,7 +79,7 @@ public class LayerMenu : MonoBehaviour
         ShowRoot();
     }
 
-    // ========== Second£¨Climate Child Menu£©==========
+    // ========== Secondï¼ˆClimate Child Menuï¼‰==========
     public void OnClickPrecipitation()
     {
         if (target) target.SetLayer(precipitationIndex);
@@ -87,13 +101,14 @@ public class LayerMenu : MonoBehaviour
         if (target) target.SetLayer(agricultureIndex);
     }
 
-    // ========== Ãæ°åÇĞ»»¹¤¾ß ==========
+    // ========== é¢æ¿åˆ‡æ¢å·¥å…· ==========
     public void ShowRoot()
     {
         if (panelRoot) panelRoot.SetActive(true);
         if (panelNature) panelNature.SetActive(false);
         if (panelClimate) panelClimate.SetActive(false);
         if (panelHumanActivity) panelHumanActivity.SetActive(false);
+        if (infoPanel) infoPanel.Hide(); 
     }
 
     public void OpenNature()
@@ -104,8 +119,16 @@ public class LayerMenu : MonoBehaviour
 
     public void OpenClimate()
     {
+        if (infoPanel) Debug.Log($"[LayerMenu] infoPanel.activeSelf(before)={infoPanel.gameObject.activeSelf}");
+        else Debug.LogWarning("[LayerMenu] infoPanel is NULL!!");
         if (panelRoot) panelRoot.SetActive(false);
         if (panelClimate) panelClimate.SetActive(true);
+
+        if (infoPanel)
+        {
+            infoPanel.SetCountry(currentCountryName);
+            infoPanel.Show("Climate");  // ç”¨æ–°è„šæœ¬æ˜¾ç¤º
+        }
     }
 
     public void OpenHumanActivity()
@@ -114,7 +137,7 @@ public class LayerMenu : MonoBehaviour
         if (panelHumanActivity) panelHumanActivity.SetActive(true);
     }
 
-    // ÈÔ±£ÁôÄãÔ­ÏÈ¸ø LayerButtonBinder ÓÃµÄ½Ó¿Ú£¨²»Ïë¸Ä Binder µÄ»°£©
+    // ä»ä¿ç•™ä½ åŸå…ˆç»™ LayerButtonBinder ç”¨çš„æ¥å£ï¼ˆä¸æƒ³æ”¹ Binder çš„è¯ï¼‰
     public void OnClickSetLayer(int index)
     {
         if (target) target.SetLayer(index);

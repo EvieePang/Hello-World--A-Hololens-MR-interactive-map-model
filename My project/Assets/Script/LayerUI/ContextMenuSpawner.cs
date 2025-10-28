@@ -20,9 +20,11 @@ public class ContextMenuSpawner : MonoBehaviour
     public void ShowMenu()
     {
         if (!menuPrefab || !earth) return;
+        Debug.Log("[Spawner] ShowMenu() called!");
         if (activeMenu) Destroy(activeMenu);
 
         activeMenu = Instantiate(menuPrefab, uiRoot ? uiRoot : null);
+        activeMenu.SetActive(true); //  «ø÷∆∆Ù”√
 
         var menu = activeMenu.GetComponent<LayerMenu>();
         if (menu == null) menu = activeMenu.GetComponentInChildren<LayerMenu>(true);
@@ -30,6 +32,8 @@ public class ContextMenuSpawner : MonoBehaviour
         {
             menu.target = earth;
             Debug.Log($"[ContextMenuSpawner] menu.target set to {earth.name}");
+            menu.SetCountryName(gameObject.name);
+            Debug.Log($"[ContextMenuSpawner] Country name set to {gameObject.name}");
         }
         else
         {
