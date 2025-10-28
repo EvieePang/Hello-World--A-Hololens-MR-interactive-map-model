@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+//using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 
@@ -25,7 +26,11 @@ public class LayerMenu : MonoBehaviour
     public int temperatureIndex = 5;    // Second menu Temperature
     public int humanActivityIndex = 6;  // Human Activity
     public int populationIndex = 7;     // Third
-    public int agricultureIndex = 8;                                         
+    public int agricultureIndex = 8;
+
+    [Header("Legend Panels")]
+    public ClimateLegendPanelController climateLegendPanel;  // ← drag your prefab instance here
+
 
     private string currentCountryName = "Unknown";
 
@@ -108,13 +113,21 @@ public class LayerMenu : MonoBehaviour
         if (panelNature) panelNature.SetActive(false);
         if (panelClimate) panelClimate.SetActive(false);
         if (panelHumanActivity) panelHumanActivity.SetActive(false);
-        if (infoPanel) infoPanel.Hide(); 
+        if (infoPanel) infoPanel.Hide();
+
+        if (climateLegendPanel) climateLegendPanel.Hide();
     }
 
     public void OpenNature()
     {
         if (panelRoot) panelRoot.SetActive(false);
         if (panelNature) panelNature.SetActive(true);
+
+        if (infoPanel)
+        {
+            infoPanel.SetCountry(currentCountryName);
+            infoPanel.Show("Nature");  // 用新脚本显示
+        }
     }
 
     public void OpenClimate()
@@ -129,12 +142,29 @@ public class LayerMenu : MonoBehaviour
             infoPanel.SetCountry(currentCountryName);
             infoPanel.Show("Climate");  // 用新脚本显示
         }
+
+        if (climateLegendPanel != null)
+        {
+            // 这里假设你在点击国家时已经记录了它的气候类型（来自 JSON）
+            // 如果暂时没有，可以先写 "Unknown climate type"
+            climateLegendPanel.Show(currentCountryName);  // ← added
+        }
+        else
+        {
+            Debug.LogWarning("[LayerMenu] climateLegendPanel is not assigned!");
+        }
     }
 
     public void OpenHumanActivity()
     {
         if (panelRoot) panelRoot.SetActive(false);
         if (panelHumanActivity) panelHumanActivity.SetActive(true);
+
+        if (infoPanel)
+        {
+            infoPanel.SetCountry(currentCountryName);
+            infoPanel.Show("HumanActivity");  // 用新脚本显示
+        }
     }
 
     // 仍保留你原先给 LayerButtonBinder 用的接口（不想改 Binder 的话）
