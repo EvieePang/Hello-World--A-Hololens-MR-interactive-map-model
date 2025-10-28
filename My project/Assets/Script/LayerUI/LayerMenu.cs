@@ -60,9 +60,10 @@ public class LayerMenu : MonoBehaviour
         if (target) target.SetLayer(terrain2Index);
     }
 
-    public void OnClickExit() // back to the top menu
+    public void OnClickExitandBackNature() // back to the top menu
     {
         ShowRoot();
+        if (target) target.SetLayer(terrainIndex);
     }
 
     // ========== Second£®Climate Child Menu£©==========
@@ -76,6 +77,12 @@ public class LayerMenu : MonoBehaviour
         if (target) target.SetLayer(temperatureIndex);
     }
 
+    public void OnClickExitandBackClimate() // back to the top menu
+    {
+        ShowRoot();
+        if (target) target.SetLayer(climateIndex);
+    }
+
     // ========== Third (Human Activity Child Menu) =========
     public void OnClickPopulation()
     {
@@ -85,6 +92,12 @@ public class LayerMenu : MonoBehaviour
     public void OnClickAgriculture()
     {
         if (target) target.SetLayer(agricultureIndex);
+    }
+
+    public void OnClickExitandBackHA() // back to the top menu
+    {
+        ShowRoot();
+        if (target) target.SetLayer(humanActivityIndex);
     }
 
     // ========== √Ê∞Â«–ªªπ§æﬂ ==========
