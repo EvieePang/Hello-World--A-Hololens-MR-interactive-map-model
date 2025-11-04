@@ -63,6 +63,8 @@ public class ClimateLegendPanelController : MonoBehaviour
     /// <param name="climateLabel">这个国家的气候类型，比如 "Hot desert"</param>
     public void Show(string countryName)
     {
+        Debug.Log($"[Show] countryName received: '{countryName}'");
+
         // 标题（可改可不改）
         if (headerText != null)
         {
@@ -85,6 +87,8 @@ public class ClimateLegendPanelController : MonoBehaviour
 
     private string GetClimateTypeForCountry(string countryName)
     {
+
+
         if (countryData == null || countryData.countries == null)
         {
             return "No climate data available.";
