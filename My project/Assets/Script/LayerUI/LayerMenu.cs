@@ -1,4 +1,4 @@
-﻿using System.Collections;
+锘縰sing System.Collections;
 using System.Collections.Generic;
 //using System.Diagnostics;
 using TMPro;
@@ -12,16 +12,16 @@ public class LayerMenu : MonoBehaviour
     [Header("Panels")]
     public GameObject panelRoot;    // top: Nature / Climate / Human Activity
     public GameObject panelNature;  // First: 
-    public GameObject panelClimate; // Second：Precipitation / Temperature / Exit
+    public GameObject panelClimate; // Second锛歅recipitation / Temperature / Exit
     public GameObject panelHumanActivity; // Third: Population/ Agriculture / Exit
-    public InfoPanelController infoPanel;  //  引用新脚本
+    public InfoPanelController infoPanel;  //  寮曠敤鏂拌剼鏈�
 
 
     [Header("Layer Indices (corresponding EarthLayerSwitcher.layerMaterials)")]
     public int terrainIndex = 0;        // Nature correspond
     public int terrain1Index = 1;       // First
     public int terrain2Index = 2;
-    public int climateIndex = 3;        // Climate（when tap “Climate”, change to it first）
+    public int climateIndex = 3;        // Climate锛坵hen tap 鈥淐limate鈥�, change to it first锛�
     public int precipitationIndex = 4;  // Second menu Precipitation
     public int temperatureIndex = 5;    // Second menu Temperature
     public int humanActivityIndex = 6;  // Human Activity
@@ -29,7 +29,7 @@ public class LayerMenu : MonoBehaviour
     public int agricultureIndex = 8;
 
     [Header("Legend Panels")]
-    public ClimateLegendPanelController climateLegendPanel;  // ← drag your prefab instance here
+    public ClimateLegendPanelController climateLegendPanel;  // 鈫� drag your prefab instance here
 
 
     private string currentCountryName = "Unknown";
@@ -41,7 +41,7 @@ public class LayerMenu : MonoBehaviour
     }
 
     // =============================
-    // 外部接口（ContextMenuSpawner 会调用）
+    // 澶栭儴鎺ュ彛锛圕ontextMenuSpawner 浼氳皟鐢級
     // =============================
     public void SetCountryName(string name)
     {
@@ -79,12 +79,13 @@ public class LayerMenu : MonoBehaviour
         if (target) target.SetLayer(terrain2Index);
     }
 
-    public void OnClickExit() // back to the top menu
+    public void OnClickExitandBackNature() // back to the top menu
     {
         ShowRoot();
+        if (target) target.SetLayer(terrainIndex);
     }
 
-    // ========== Second（Climate Child Menu）==========
+    // ========== Second锛圕limate Child Menu锛�==========
     public void OnClickPrecipitation()
     {
         if (target) target.SetLayer(precipitationIndex);
@@ -93,6 +94,12 @@ public class LayerMenu : MonoBehaviour
     public void OnClickTemperature()
     {
         if (target) target.SetLayer(temperatureIndex);
+    }
+
+    public void OnClickExitandBackClimate() // back to the top menu
+    {
+        ShowRoot();
+        if (target) target.SetLayer(climateIndex);
     }
 
     // ========== Third (Human Activity Child Menu) =========
@@ -104,6 +111,12 @@ public class LayerMenu : MonoBehaviour
     public void OnClickAgriculture()
     {
         if (target) target.SetLayer(agricultureIndex);
+    }
+
+    public void OnClickExitandBackHA() // back to the top menu
+    {
+        ShowRoot();
+        if (target) target.SetLayer(humanActivityIndex);
     }
 
     // ========== 面板切换工具 ==========
@@ -126,7 +139,7 @@ public class LayerMenu : MonoBehaviour
         if (infoPanel)
         {
             infoPanel.SetCountry(currentCountryName);
-            infoPanel.Show("Nature");  // 用新脚本显示
+            infoPanel.Show("Nature");  // 鐢ㄦ柊鑴氭湰鏄剧ず
         }
     }
 
@@ -140,14 +153,14 @@ public class LayerMenu : MonoBehaviour
         if (infoPanel)
         {
             infoPanel.SetCountry(currentCountryName);
-            infoPanel.Show("Climate");  // 用新脚本显示
+            infoPanel.Show("Climate");  // 鐢ㄦ柊鑴氭湰鏄剧ず
         }
 
         if (climateLegendPanel != null)
         {
-            // 这里假设你在点击国家时已经记录了它的气候类型（来自 JSON）
-            // 如果暂时没有，可以先写 "Unknown climate type"
-            climateLegendPanel.Show(currentCountryName);  // ← added
+            // 杩欓噷鍋囪浣犲湪鐐瑰嚮鍥藉鏃跺凡缁忚褰曚簡瀹冪殑姘斿�欑被鍨嬶紙鏉ヨ嚜 JSON锛�
+            // 濡傛灉鏆傛椂娌℃湁锛屽彲浠ュ厛鍐� "Unknown climate type"
+            climateLegendPanel.Show(currentCountryName);  // 鈫� added
         }
         else
         {
@@ -163,11 +176,11 @@ public class LayerMenu : MonoBehaviour
         if (infoPanel)
         {
             infoPanel.SetCountry(currentCountryName);
-            infoPanel.Show("HumanActivity");  // 用新脚本显示
+            infoPanel.Show("HumanActivity");  // 鐢ㄦ柊鑴氭湰鏄剧ず
         }
     }
 
-    // 仍保留你原先给 LayerButtonBinder 用的接口（不想改 Binder 的话）
+    // 浠嶄繚鐣欎綘鍘熷厛缁� LayerButtonBinder 鐢ㄧ殑鎺ュ彛锛堜笉鎯虫敼 Binder 鐨勮瘽锛�
     public void OnClickSetLayer(int index)
     {
         if (target) target.SetLayer(index);
