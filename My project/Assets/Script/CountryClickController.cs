@@ -2,6 +2,8 @@
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.MixedReality.Toolkit;        // 必需命名空间
+
 
 /// 点击国家 → 居中放大 + 红色边界 + 半透明 + 标签（整合 CountryHighlighter 全逻辑）
 public class CountryClickController : MonoBehaviour
@@ -75,6 +77,11 @@ public class CountryClickController : MonoBehaviour
         }
     }
 
+    public void FocusCountryWrapper(GameObject country)
+    {
+        FocusCountry(country);
+    }
+
     // 主入口：点击国家
     void FocusCountry(GameObject country)
     {
@@ -91,16 +98,16 @@ public class CountryClickController : MonoBehaviour
         // 标签
         ShowLabel(country);
 
-        //// 居中 + 摆正（国家真北对齐相机北）+ 放大
-        //var mf = country.GetComponent<MeshFilter>();
-        //Vector3 localCenter = mf.sharedMesh.bounds.center;
-        //Vector3 worldCenter = country.transform.TransformPoint(localCenter);
+        // 居中 + 摆正（国家真北对齐相机北）+ 放大
+        var mf = country.GetComponent<MeshFilter>();
+        Vector3 localCenter = mf.sharedMesh.bounds.center;
+        Vector3 worldCenter = country.transform.TransformPoint(localCenter);
 
-        //Vector3 targetDir = (worldCenter - earthTransform.position).normalized;         // 国家方向（地心→国家）
-        //Vector3 camDir = (cameraTransform.position - earthTransform.position).normalized; // 地心→相机
+        Vector3 targetDir = (worldCenter - earthTransform.position).normalized;         // 国家方向（地心→国家）
+        Vector3 camDir = (cameraTransform.position - earthTransform.position).normalized; // 地心→相机
 
-        //if (currentAnim != null) StopCoroutine(currentAnim);
-        //currentAnim = StartCoroutine(RotateAndZoom(targetDir, camDir, country));
+        if (currentAnim != null) StopCoroutine(currentAnim);
+        currentAnim = StartCoroutine(RotateAndZoom(targetDir, camDir, country));
 
         // === 播放对应国家音频（从 Resources/Audio/ 动态加载） ===
         if (audioSource)
