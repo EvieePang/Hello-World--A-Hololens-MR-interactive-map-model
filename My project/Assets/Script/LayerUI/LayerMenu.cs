@@ -30,6 +30,7 @@ public class LayerMenu : MonoBehaviour
 
     [Header("Legend Panels")]
     public ClimateLegendPanelController climateLegendPanel;  // drag your prefab instance here
+    public ColorbarPanelController colorbarPanel;
 
 
     private string currentCountryName = "Unknown";
@@ -72,11 +73,13 @@ public class LayerMenu : MonoBehaviour
     public void OnClickTerrain1()
     {
         if (target) target.SetLayer(terrain1Index);
+        OpenTerrain();
     }
 
     public void OnClickTerrain2()
     {
         if (target) target.SetLayer(terrain2Index);
+        OpenForest();
     }
 
     public void OnClickExitandBackNature() // back to the top menu
@@ -89,11 +92,13 @@ public class LayerMenu : MonoBehaviour
     public void OnClickPrecipitation()
     {
         if (target) target.SetLayer(precipitationIndex);
+        OpenPrecipitation();
     }
 
     public void OnClickTemperature()
     {
         if (target) target.SetLayer(temperatureIndex);
+        OpenTemperature();
     }
 
     public void OnClickExitandBackClimate() // back to the top menu
@@ -106,11 +111,13 @@ public class LayerMenu : MonoBehaviour
     public void OnClickPopulation()
     {
         if (target) target.SetLayer(populationIndex);
+        OpenPopulation();   
     }
 
     public void OnClickAgriculture()
     {
         if (target) target.SetLayer(agricultureIndex);
+        OpenGDP();
     }
 
     public void OnClickExitandBackHA() // back to the top menu
@@ -129,6 +136,8 @@ public class LayerMenu : MonoBehaviour
         if (infoPanel) infoPanel.Hide();
 
         if (climateLegendPanel) climateLegendPanel.Hide();
+        if (colorbarPanel) colorbarPanel.Hide();
+
     }
 
     public void OpenNature()
@@ -141,12 +150,50 @@ public class LayerMenu : MonoBehaviour
             infoPanel.SetCountry(currentCountryName);
             infoPanel.Show("Nature");  
         }
+
+        if (colorbarPanel!= null)
+        {
+            colorbarPanel.Show(currentCountryName, "nature");
+        }
+    }
+
+    public void OpenTerrain()
+    {
+        if (panelRoot) panelRoot.SetActive(false);
+        if (panelNature) panelNature.SetActive(true);
+
+        if (infoPanel)
+        {
+            infoPanel.SetCountry(currentCountryName);
+            infoPanel.Show("Terrain");
+        }
+
+        if (colorbarPanel != null)
+        {
+            colorbarPanel.Show(currentCountryName, "terrain");
+        }
+    }
+
+    public void OpenForest()
+    {
+        if (panelRoot) panelRoot.SetActive(false);
+        if (panelNature) panelNature.SetActive(true);
+
+        if (infoPanel)
+        {
+            infoPanel.SetCountry(currentCountryName);
+            infoPanel.Show("Forest");
+        }
+
+        if (colorbarPanel != null)
+        {
+            colorbarPanel.Show(currentCountryName, "forest");
+        }
     }
 
     public void OpenClimate()
     {
-        if (infoPanel) Debug.Log($"[LayerMenu] infoPanel.activeSelf(before)={infoPanel.gameObject.activeSelf}");
-        else Debug.LogWarning("[LayerMenu] infoPanel is NULL!!");
+
         if (panelRoot) panelRoot.SetActive(false);
         if (panelClimate) panelClimate.SetActive(true);
 
@@ -166,6 +213,42 @@ public class LayerMenu : MonoBehaviour
         }
     }
 
+    public void OpenTemperature()
+    {
+        if (panelRoot) panelRoot.SetActive(false);
+        if (panelNature) panelClimate.SetActive(true);
+        if (climateLegendPanel) climateLegendPanel.Hide();
+
+        if (infoPanel)
+        {
+            infoPanel.SetCountry(currentCountryName);
+            infoPanel.Show("Temperature");
+        }
+
+        if (colorbarPanel != null)
+        {
+            colorbarPanel.Show(currentCountryName, "temperature");
+        }
+    }
+
+    public void OpenPrecipitation()
+    {
+        if (panelRoot) panelRoot.SetActive(false);
+        if (panelNature) panelClimate.SetActive(true);
+        if (climateLegendPanel) climateLegendPanel.Hide();
+
+        if (infoPanel)
+        {
+            infoPanel.SetCountry(currentCountryName);
+            infoPanel.Show("Precipitation");
+        }
+
+        if (colorbarPanel != null)
+        {
+            colorbarPanel.Show(currentCountryName, "precipitation");
+        }
+    }
+
     public void OpenHumanActivity()
     {
         if (panelRoot) panelRoot.SetActive(false);
@@ -176,7 +259,48 @@ public class LayerMenu : MonoBehaviour
             infoPanel.SetCountry(currentCountryName);
             infoPanel.Show("HumanActivity");  
         }
+
+        if (colorbarPanel != null)
+        {
+            colorbarPanel.Show(currentCountryName, "humanactivity");
+        }
     }
+
+    public void OpenGDP()
+    {
+        if (panelRoot) panelRoot.SetActive(false);
+        if (panelNature) panelHumanActivity.SetActive(true);
+
+        if (infoPanel)
+        {
+            infoPanel.SetCountry(currentCountryName);
+            infoPanel.Show("gdp");
+        }
+
+        if (colorbarPanel != null)
+        {
+            colorbarPanel.Show(currentCountryName, "gdp");
+        }
+    }
+
+    public void OpenPopulation()
+    {
+        if (panelRoot) panelRoot.SetActive(false);
+        if (panelNature) panelHumanActivity.SetActive(true);
+
+        if (infoPanel)
+        {
+            infoPanel.SetCountry(currentCountryName);
+            infoPanel.Show("Population");
+        }
+
+        if (colorbarPanel != null)
+        {
+            colorbarPanel.Show(currentCountryName, "population");
+        }
+    }
+
+
 
     public void OnClickSetLayer(int index)
     {

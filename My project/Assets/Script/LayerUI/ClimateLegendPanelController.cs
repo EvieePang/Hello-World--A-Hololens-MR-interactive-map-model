@@ -64,6 +64,7 @@ public class ClimateLegendPanelController : MonoBehaviour
     public void Show(string countryName)
     {
         Debug.Log($"[Show] countryName received: '{countryName}'");
+        Awake();
 
         // 标题（可改可不改）
         if (headerText != null)
