@@ -1392,6 +1392,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4959383026866709473, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: colorbarPanel
+      value: 
+      objectReference: {fileID: 1619727944}
+    - target: {fileID: 6552780457915288200, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8045613959709835703, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1605,6 +1613,17 @@ MonoBehaviour:
   tiltAngle: 15
   rotationRange: 360
   clockwise: 1
+--- !u!114 &1619727944 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8357166032213166905, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+  m_PrefabInstance: {fileID: 1164754068}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0710b5cdb9f43548bc89d614a269715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1712467252 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 101512, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}

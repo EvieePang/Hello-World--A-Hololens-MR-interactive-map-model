@@ -7,13 +7,13 @@
   },
   {
     "type": "terrain",
-    "low": "0m",
-    "high": "1000m"
+    "low": "0°",
+    "high": "90°"
   },
   {
     "type": "forest",
-    "low": "0",
-    "high": "100000"
+    "low": "0m",
+    "high": "15m"
   },
   {
     "type": "humanactivity",
@@ -22,8 +22,8 @@
   },
   {
     "type": "gdp",
-    "low": "0",
-    "high": "100"
+    "low": "1000 $",
+    "high": "80000 $"
   },
   {
     "type": "population",
@@ -32,8 +32,8 @@
   },
   {
     "type": "temperature",
-    "low": "-10 Celsius",
-    "high": "30 Celsius"
+    "low": "-10 °C",
+    "high": "30 °C"
   },
   {
     "type": "precipitation",
