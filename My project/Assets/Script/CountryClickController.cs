@@ -29,7 +29,7 @@ public class CountryClickController : MonoBehaviour
     public Color highlightColor = Color.red;
     public float borderWidth = 0.02f;    // 描边粗细（CountryHighlighter 的 width）
     public float normalPush = 0.001f;   // 防 ZFighting 的外推距离
-    [Range(0, 1)] public float transparentAlpha = 0.2f;     // 国家内部透明度
+    [Range(0, 1)] public float transparentAlpha = 1.0f;     // 国家内部透明度
 
     //[Header("Label")]
     //public float labelOffset = 0.1f;            // 标签离地表距离
@@ -41,6 +41,8 @@ public class CountryClickController : MonoBehaviour
     //[Header("UI Controller")]
     //public UIController uiController;
 
+    [HideInInspector]
+    public bool isAnyCountryActive = false;
 
     // 运行时引用
     private GameObject currentLabel;
@@ -134,10 +136,12 @@ public class CountryClickController : MonoBehaviour
         //    uiController.ShowControlPanels(country.name);
         //}
 
+        isAnyCountryActive = true;
+
     }
 
     // 半透明 + 红色边界（完整移植自 CountryHighlighter）
-    void HighlightCountry(GameObject country)
+    public void HighlightCountry(GameObject country)
     {
         var mr = country.GetComponent<MeshRenderer>();
         var mf = country.GetComponent<MeshFilter>();
@@ -216,7 +220,7 @@ public class CountryClickController : MonoBehaviour
 
 
     // 恢复上一个国家
-    void ClearHighlight()
+    public void ClearHighlight()
     {
         if (currentLabel) Destroy(currentLabel);
         if (currentBorder) Destroy(currentBorder);
@@ -231,6 +235,28 @@ public class CountryClickController : MonoBehaviour
         originalMat = null;
         currentAnim = null;
     }
+
+    // 设置国家透明度
+    // 供外部调用：把当前选中的国家改成指定透明度（0~1）
+    public void SetCurrentCountryAlpha(float alpha)
+    {
+        // 没有当前国家就什么也不做
+        if (!currentCountry) return;
+
+        var mr = currentCountry.GetComponent<MeshRenderer>();
+        if (!mr) return;
+
+        var mat = mr.sharedMaterial;
+        if (!mat) return;
+
+        if (mat.HasProperty("_Color"))
+        {
+            Color c = mat.color;
+            c.a = Mathf.Clamp01(alpha);
+            mat.color = c;
+        }
+    }
+
 
     // ======= 旋转 + 放大（两步：居中 → 真北对齐相机北）=======
     IEnumerator RotateAndZoom(Vector3 targetDir, Vector3 camDir, GameObject country)
