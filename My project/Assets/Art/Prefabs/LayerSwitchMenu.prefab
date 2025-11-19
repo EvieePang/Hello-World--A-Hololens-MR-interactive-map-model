@@ -293,11 +293,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-<<<<<<< HEAD
-  m_IsActive: 1
-=======
   m_IsActive: 0
->>>>>>> earth_menu_lefthand0
 --- !u!4 &4258086087551746881
 Transform:
   m_ObjectHideFlags: 0
@@ -684,10 +680,7 @@ GameObject:
   - component: {fileID: 8045613959709835703}
   - component: {fileID: 4959383026866709473}
   - component: {fileID: 1482165767637806773}
-<<<<<<< HEAD
-=======
   - component: {fileID: 6930056464839988568}
->>>>>>> earth_menu_lefthand0
   m_Layer: 0
   m_Name: LayerSwitchMenu
   m_TagString: Untagged
@@ -756,19 +749,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c85a846b27e5344ba2da61fe986a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  baseDistance: 0.5
-  sideOffset: 0.4
-  upOffset: 0
-  occlusionMask:
-    serializedVersion: 2
-    m_Bits: 64
-  yawOnly: 1
-  flipForward: 1
-  posLerp: 14
-  rotLerp: 14
-  cameraTransform: {fileID: 0}
-=======
   followLeftHand: 0
   palmOffset: {x: 0, y: 0.05, z: 0.08}
   posLerp: 14
@@ -787,7 +767,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoConstraintSelection: 1
   selectedConstraints: []
->>>>>>> earth_menu_lefthand0
 --- !u!1 &3211648748308419517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,11 +1573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-<<<<<<< HEAD
-  m_IsActive: 1
-=======
   m_IsActive: 0
->>>>>>> earth_menu_lefthand0
 --- !u!4 &1171515780561787267
 Transform:
   m_ObjectHideFlags: 0
@@ -2865,10 +2840,7 @@ GameObject:
   - component: {fileID: 3862138754215573308}
   - component: {fileID: 1379720620558069417}
   - component: {fileID: 6364945628776966258}
-<<<<<<< HEAD
-=======
   - component: {fileID: 3202371420817303702}
->>>>>>> earth_menu_lefthand0
   m_Layer: 0
   m_Name: LegendInfo
   m_TagString: Untagged
@@ -2957,11 +2929,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-<<<<<<< HEAD
   m_text: Decription based on the Colorbar
-=======
-  m_text: Legend information
->>>>>>> earth_menu_lefthand0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3033,8 +3001,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1379720620558069417}
   m_maskType: 0
-<<<<<<< HEAD
-=======
 --- !u!33 &3202371420817303702
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3043,7 +3009,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8308251410972160671}
   m_Mesh: {fileID: 0}
->>>>>>> earth_menu_lefthand0
 --- !u!1 &8405775709054165542
 GameObject:
   m_ObjectHideFlags: 0
@@ -4511,22 +4476,14 @@ PrefabInstance:
     - target: {fileID: 4972717407899353996, guid: 3e816bc244e720a44bdea29af72e0b8b, type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-<<<<<<< HEAD
-      objectReference: {fileID: 866238917266358768}
-=======
       objectReference: {fileID: 7303379631449927920}
->>>>>>> earth_menu_lefthand0
     - target: {fileID: 4972717407899353996, guid: 3e816bc244e720a44bdea29af72e0b8b, type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4972717407899353996, guid: 3e816bc244e720a44bdea29af72e0b8b, type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-<<<<<<< HEAD
-      value: OnClickExitRootMenu
-=======
       value: OnExitClicked
->>>>>>> earth_menu_lefthand0
       objectReference: {fileID: 0}
     - target: {fileID: 4972717407899353996, guid: 3e816bc244e720a44bdea29af72e0b8b, type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -4618,11 +4575,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5691419709616440555, guid: 3e816bc244e720a44bdea29af72e0b8b, type: 3}
       insertIndex: -1
-<<<<<<< HEAD
-      addedObject: {fileID: 866238917266358768}
-=======
       addedObject: {fileID: 7303379631449927920}
->>>>>>> earth_menu_lefthand0
   m_SourcePrefab: {fileID: 100100000, guid: 3e816bc244e720a44bdea29af72e0b8b, type: 3}
 --- !u!4 &541338268850118339 stripped
 Transform:
@@ -4634,11 +4587,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5691419709616440555, guid: 3e816bc244e720a44bdea29af72e0b8b, type: 3}
   m_PrefabInstance: {fileID: 5294197260189605065}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
---- !u!114 &866238917266358768
-=======
 --- !u!114 &7303379631449927920
->>>>>>> earth_menu_lefthand0
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4647,13 +4596,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 541338270478030882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
-  m_Script: {fileID: 11500000, guid: 8f10f8e2c1976334999466d991227727, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  earthRenderer: {fileID: 0}
-  defaultEarthMaterial: {fileID: 2100000, guid: 97ad196c2bc809e48a7bb09170fa9957, type: 2}
-=======
   m_Script: {fileID: 11500000, guid: ff3a56f646e05a1428bae1b931cf76e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -4670,7 +4612,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32e8a7644144f8419bb881ad588ed0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
->>>>>>> earth_menu_lefthand0
 --- !u!1001 &5716154660277230518
 PrefabInstance:
   m_ObjectHideFlags: 0

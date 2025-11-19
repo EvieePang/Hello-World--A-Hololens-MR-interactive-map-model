@@ -66,21 +66,21 @@ public class LayerMenu : MonoBehaviour
     public void OnClickNature()
     {
         if (target) target.SetLayer(terrainIndex);
-        if (countryController) countryController.SetCurrentCountryAlpha(0.4f);
+        if (countryController) countryController.SetCurrentCountryAlpha(0.1f);
         OpenNature();
     }
 
     public void OnClickClimate()   
     {
         if (target) target.SetLayer(climateIndex);
-        if (countryController) countryController.SetCurrentCountryAlpha(0.4f);
+        if (countryController) countryController.SetCurrentCountryAlpha(0.1f);
         OpenClimate();
     }
 
     public void OnClickHumanActivity()
     {
         if (target) target.SetLayer(humanActivityIndex);
-        if (countryController) countryController.SetCurrentCountryAlpha(0.4f);
+        if (countryController) countryController.SetCurrentCountryAlpha(0.1f);
         OpenHumanActivity();
     }
 
