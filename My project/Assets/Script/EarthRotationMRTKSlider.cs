@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using MixedReality.Toolkit.UX;
 
 public class EarthRotationMRTKSlider : MonoBehaviour
@@ -81,4 +81,4 @@ public class EarthRotationMRTKSlider : MonoBehaviour
 
         earthTransform.localRotation = Quaternion.Euler(0, angle, 0);
     }
-}
+}

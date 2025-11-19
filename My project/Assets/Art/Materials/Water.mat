@@ -32,7 +32,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
+<<<<<<< HEAD
         m_Texture: {fileID: 2800000, guid: 7173f9149c3027945b5e9457ef5662f7, type: 3}
+=======
+        m_Texture: {fileID: 2800000, guid: 85b0ab3579e08644b9e8230de89e40cb, type: 3}
+>>>>>>> earth_menu_lefthand0
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
