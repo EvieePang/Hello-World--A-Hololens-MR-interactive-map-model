@@ -35,11 +35,24 @@ public class LayerMenu : MonoBehaviour
 
     private string currentCountryName = "Unknown";
 
+    [Header("Country Control")]
+    public CountryClickController countryController;
+
 
     private void Awake()
     {
         ShowRoot();  // default to show the top menu 3 buttons
-    }
+
+        if (!countryController)
+        {
+            countryController = FindObjectOfType<CountryClickController>();
+            if (countryController)
+                Debug.Log($"[LayerMenu] Auto-bound CountryClickController: {countryController.name}");
+            else
+                Debug.LogWarning("[LayerMenu] CountryClickController not found in scene!");
+        }
+
+}
 
     // =============================
 
@@ -54,18 +67,21 @@ public class LayerMenu : MonoBehaviour
     public void OnClickNature()
     {
         if (target) target.SetLayer(terrainIndex);
+        if (countryController) countryController.SetCurrentCountryAlpha(0.1f);
         OpenNature();
     }
 
     public void OnClickClimate()   
     {
         if (target) target.SetLayer(climateIndex);
+        if (countryController) countryController.SetCurrentCountryAlpha(0.1f);
         OpenClimate();
     }
 
     public void OnClickHumanActivity()
     {
         if (target) target.SetLayer(humanActivityIndex);
+        if (countryController) countryController.SetCurrentCountryAlpha(0.1f);
         OpenHumanActivity();
     }
 

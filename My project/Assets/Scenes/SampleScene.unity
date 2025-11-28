@@ -206,6 +206,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 27427835}
   m_Mesh: {fileID: 4300000, guid: d6db503b0586f984eb1e336a4e9df53c, type: 3}
+--- !u!1 &55410036 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100874, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+  m_PrefabInstance: {fileID: 1132788971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &55410037 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400874, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+  m_PrefabInstance: {fileID: 1132788971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &55410038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55410036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6b7ef62cb7be444a3eb6c1271477be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &118375906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -660,8 +682,80 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &832538879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100788, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+  m_PrefabInstance: {fileID: 1132788971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &832538883
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832538879}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: d6db503b0586f984eb1e336a4e9df53c, type: 3}
+--- !u!1 &938098656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 938098658}
+  - component: {fileID: 938098657}
+  m_Layer: 0
+  m_Name: InteractionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &938098657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938098656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444b14e66922fd54ab0ef4877b5e5401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 1296122994}
+--- !u!4 &938098658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938098656}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.36489993, y: 0.033988148, z: -0.0779569}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &961702952
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,6 +832,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 100008, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100016, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -746,21 +844,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: North Korea
       objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100022, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Cape Verde
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100034, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Denmark
       objectReference: {fileID: 0}
+    - target: {fileID: 100034, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100046, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Turkey
       objectReference: {fileID: 0}
+    - target: {fileID: 100046, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100050, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Democratic Republic of the Congo
+      objectReference: {fileID: 0}
+    - target: {fileID: 100050, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
@@ -774,165 +892,421 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tunisia
       objectReference: {fileID: 0}
+    - target: {fileID: 100082, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100084, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Haiti
+      objectReference: {fileID: 0}
+    - target: {fileID: 100084, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100086, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Malaysia
       objectReference: {fileID: 0}
+    - target: {fileID: 100086, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100094, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Solomon Islands
+      objectReference: {fileID: 0}
+    - target: {fileID: 100094, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100134, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Saudi Arabia
       objectReference: {fileID: 0}
+    - target: {fileID: 100134, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100150, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Egypt (UAR)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100150, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100160, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Trinidad and Tobago
       objectReference: {fileID: 0}
+    - target: {fileID: 100160, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100162, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Djibouti
+      objectReference: {fileID: 0}
+    - target: {fileID: 100162, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100178, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Russia
       objectReference: {fileID: 0}
+    - target: {fileID: 100178, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100188, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Eswatini
+      objectReference: {fileID: 0}
+    - target: {fileID: 100188, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100208, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Australia
       objectReference: {fileID: 0}
+    - target: {fileID: 100208, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100220, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Jordan
+      objectReference: {fileID: 0}
+    - target: {fileID: 100220, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100250, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Syria
       objectReference: {fileID: 0}
+    - target: {fileID: 100250, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100256, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Cambodia
+      objectReference: {fileID: 0}
+    - target: {fileID: 100256, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100266, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100268, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Myanmar
       objectReference: {fileID: 0}
+    - target: {fileID: 100268, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100270, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Guinea-Bissau
+      objectReference: {fileID: 0}
+    - target: {fileID: 100270, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100296, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Honduras
       objectReference: {fileID: 0}
+    - target: {fileID: 100296, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100300, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Lithuania
+      objectReference: {fileID: 0}
+    - target: {fileID: 100300, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100302, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Bhutan
       objectReference: {fileID: 0}
+    - target: {fileID: 100302, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100316, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Greece
+      objectReference: {fileID: 0}
+    - target: {fileID: 100316, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100324, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Czech Republic
       objectReference: {fileID: 0}
+    - target: {fileID: 100324, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100344, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100352, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Slovakia
+      objectReference: {fileID: 0}
+    - target: {fileID: 100352, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100360, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100372, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Madagascar
       objectReference: {fileID: 0}
+    - target: {fileID: 100372, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100384, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Zimbabwe
+      objectReference: {fileID: 0}
+    - target: {fileID: 100384, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100400, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Gambia
       objectReference: {fileID: 0}
+    - target: {fileID: 100400, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100418, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Mauritius
+      objectReference: {fileID: 0}
+    - target: {fileID: 100418, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100436, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100466, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Sri Lanka
       objectReference: {fileID: 0}
+    - target: {fileID: 100466, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100472, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100496, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100510, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Somalia
+      objectReference: {fileID: 0}
+    - target: {fileID: 100510, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100512, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Ireland
       objectReference: {fileID: 0}
+    - target: {fileID: 100512, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100518, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100542, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Ethiopia
+      objectReference: {fileID: 0}
+    - target: {fileID: 100542, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100544, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100558, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Costa Rica
       objectReference: {fileID: 0}
+    - target: {fileID: 100558, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100560, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100564, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100568, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100590, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100604, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100610, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: North Macedonia
+      objectReference: {fileID: 0}
+    - target: {fileID: 100610, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100614, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100618, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Cuba
       objectReference: {fileID: 0}
+    - target: {fileID: 100618, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100636, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Republic of the Congo
+      objectReference: {fileID: 0}
+    - target: {fileID: 100636, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100768, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100782, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Liberia
       objectReference: {fileID: 0}
+    - target: {fileID: 100782, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100788, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100794, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100796, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100806, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Netherlands
       objectReference: {fileID: 0}
+    - target: {fileID: 100806, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100814, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: New Zealand
+      objectReference: {fileID: 0}
+    - target: {fileID: 100814, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100818, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100822, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100824, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Kazakhstan
       objectReference: {fileID: 0}
+    - target: {fileID: 100824, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100840, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100844, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100852, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Norway
       objectReference: {fileID: 0}
+    - target: {fileID: 100852, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100854, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100860, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100866, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100870, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Georgia
+      objectReference: {fileID: 0}
+    - target: {fileID: 100870, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100874, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_IsActive
@@ -942,149 +1316,353 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lebanon
       objectReference: {fileID: 0}
+    - target: {fileID: 100878, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100894, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100912, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Nigeria
+      objectReference: {fileID: 0}
+    - target: {fileID: 100912, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100926, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Finland
       objectReference: {fileID: 0}
+    - target: {fileID: 100926, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100936, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: United Arab Emirates
+      objectReference: {fileID: 0}
+    - target: {fileID: 100936, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100944, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Neutral Zone 2
       objectReference: {fileID: 0}
+    - target: {fileID: 100944, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100946, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: France
+      objectReference: {fileID: 0}
+    - target: {fileID: 100946, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100962, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Qatar
       objectReference: {fileID: 0}
+    - target: {fileID: 100962, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 100976, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: South Korea
+      objectReference: {fileID: 0}
+    - target: {fileID: 100976, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 100986, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Sweden
       objectReference: {fileID: 0}
+    - target: {fileID: 100986, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101016, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101030, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Colombia
+      objectReference: {fileID: 0}
+    - target: {fileID: 101030, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101040, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Philippines
       objectReference: {fileID: 0}
+    - target: {fileID: 101040, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101046, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: El Salvador
+      objectReference: {fileID: 0}
+    - target: {fileID: 101046, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101048, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Zambia
       objectReference: {fileID: 0}
+    - target: {fileID: 101048, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101050, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101054, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Tajikistan
+      objectReference: {fileID: 0}
+    - target: {fileID: 101054, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Fiji
       objectReference: {fileID: 0}
+    - target: {fileID: 101056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101064, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101066, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101102, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: China
+      objectReference: {fileID: 0}
+    - target: {fileID: 101102, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101116, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Sierra Leone
       objectReference: {fileID: 0}
+    - target: {fileID: 101116, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101118, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Rwanda
+      objectReference: {fileID: 0}
+    - target: {fileID: 101118, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101126, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101132, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Falkland Islands
       objectReference: {fileID: 0}
+    - target: {fileID: 101132, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101140, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Romania
+      objectReference: {fileID: 0}
+    - target: {fileID: 101140, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101142, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Guinea
       objectReference: {fileID: 0}
+    - target: {fileID: 101142, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101180, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Slovenia
+      objectReference: {fileID: 0}
+    - target: {fileID: 101180, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101184, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Egypt
       objectReference: {fileID: 0}
+    - target: {fileID: 101184, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101194, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Hungary
+      objectReference: {fileID: 0}
+    - target: {fileID: 101194, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101216, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101238, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Latvia
       objectReference: {fileID: 0}
+    - target: {fileID: 101238, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101240, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Mauritania
+      objectReference: {fileID: 0}
+    - target: {fileID: 101240, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101242, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101254, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101262, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101304, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Morocco
       objectReference: {fileID: 0}
+    - target: {fileID: 101304, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101332, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Equatorial Guinea
+      objectReference: {fileID: 0}
+    - target: {fileID: 101332, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101344, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Croatia
       objectReference: {fileID: 0}
+    - target: {fileID: 101344, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101346, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101376, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101416, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101438, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Libya
+      objectReference: {fileID: 0}
+    - target: {fileID: 101438, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101440, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Luxembourg
       objectReference: {fileID: 0}
+    - target: {fileID: 101440, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101452, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Kuwait
+      objectReference: {fileID: 0}
+    - target: {fileID: 101452, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101470, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Uruguay
       objectReference: {fileID: 0}
+    - target: {fileID: 101470, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101472, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Estonia
+      objectReference: {fileID: 0}
+    - target: {fileID: 101472, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101488, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Paraguay
       objectReference: {fileID: 0}
+    - target: {fileID: 101488, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101496, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Serbia
       objectReference: {fileID: 0}
+    - target: {fileID: 101496, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101502, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Eritrea
+      objectReference: {fileID: 0}
+    - target: {fileID: 101502, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101512, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
@@ -1099,224 +1677,464 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 101512, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101512, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101534, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101540, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Spain
       objectReference: {fileID: 0}
+    - target: {fileID: 101540, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101594, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Dominican Republic
+      objectReference: {fileID: 0}
+    - target: {fileID: 101594, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101596, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Ghana
       objectReference: {fileID: 0}
+    - target: {fileID: 101596, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101598, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Poland
+      objectReference: {fileID: 0}
+    - target: {fileID: 101598, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101600, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Kyrgyzstan
       objectReference: {fileID: 0}
+    - target: {fileID: 101600, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101604, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101626, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101670, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Mozambique
+      objectReference: {fileID: 0}
+    - target: {fileID: 101670, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101686, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Nicaragua
       objectReference: {fileID: 0}
+    - target: {fileID: 101686, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101716, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101720, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Malawi
+      objectReference: {fileID: 0}
+    - target: {fileID: 101720, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101730, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Yemen
       objectReference: {fileID: 0}
+    - target: {fileID: 101730, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101736, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Mexico
+      objectReference: {fileID: 0}
+    - target: {fileID: 101736, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101756, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Central African Republic
       objectReference: {fileID: 0}
+    - target: {fileID: 101756, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101766, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Guatemala
+      objectReference: {fileID: 0}
+    - target: {fileID: 101766, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101776, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Bulgaria
       objectReference: {fileID: 0}
+    - target: {fileID: 101776, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101780, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Suriname
+      objectReference: {fileID: 0}
+    - target: {fileID: 101780, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101782, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Cameroon
       objectReference: {fileID: 0}
+    - target: {fileID: 101782, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101788, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Switzerland
+      objectReference: {fileID: 0}
+    - target: {fileID: 101788, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101800, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Ukraine
       objectReference: {fileID: 0}
+    - target: {fileID: 101800, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101806, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101820, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: South Georgia and the South Sandwich Islands
+      objectReference: {fileID: 0}
+    - target: {fileID: 101820, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101826, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101828, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: South Sudan
       objectReference: {fileID: 0}
+    - target: {fileID: 101828, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101842, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Martinique
+      objectReference: {fileID: 0}
+    - target: {fileID: 101842, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101870, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Papua New Guinea
       objectReference: {fileID: 0}
+    - target: {fileID: 101870, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101872, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Iceland
+      objectReference: {fileID: 0}
+    - target: {fileID: 101872, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101884, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Dominica
       objectReference: {fileID: 0}
+    - target: {fileID: 101884, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101890, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Ecuador
+      objectReference: {fileID: 0}
+    - target: {fileID: 101890, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101900, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101904, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: "R\xE9union"
       objectReference: {fileID: 0}
+    - target: {fileID: 101904, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101910, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Guyana
+      objectReference: {fileID: 0}
+    - target: {fileID: 101910, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101930, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Jamaica
       objectReference: {fileID: 0}
+    - target: {fileID: 101930, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101934, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 101942, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101974, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Kenya
+      objectReference: {fileID: 0}
+    - target: {fileID: 101974, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 101976, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Germany
       objectReference: {fileID: 0}
+    - target: {fileID: 101976, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 101986, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: New Caledonia
+      objectReference: {fileID: 0}
+    - target: {fileID: 101986, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 102012, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Chile
       objectReference: {fileID: 0}
+    - target: {fileID: 102012, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 102026, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Ivory Coast
+      objectReference: {fileID: 0}
+    - target: {fileID: 102026, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 102028, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Iraq
       objectReference: {fileID: 0}
+    - target: {fileID: 102028, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 102052, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Cyprus
+      objectReference: {fileID: 0}
+    - target: {fileID: 102052, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 102074, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Thailand
       objectReference: {fileID: 0}
+    - target: {fileID: 102074, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 102092, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 102102, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 102122, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 102140, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Lesotho
+      objectReference: {fileID: 0}
+    - target: {fileID: 102140, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 102144, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Azerbaijan
       objectReference: {fileID: 0}
+    - target: {fileID: 102144, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 102194, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 102200, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Portugal
+      objectReference: {fileID: 0}
+    - target: {fileID: 102200, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 102228, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Venezuela
       objectReference: {fileID: 0}
+    - target: {fileID: 102228, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 102246, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Neutral Zone (Saudi-Kuwait)
+      objectReference: {fileID: 0}
+    - target: {fileID: 102246, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 102276, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 102300, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Montenegro
       objectReference: {fileID: 0}
+    - target: {fileID: 102300, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
+    - target: {fileID: 102310, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 102338, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Italy
+      objectReference: {fileID: 0}
+    - target: {fileID: 102338, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
       objectReference: {fileID: 0}
     - target: {fileID: 102344, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Mongolia
       objectReference: {fileID: 0}
+    - target: {fileID: 102344, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 102378, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Name
       value: Puerto Rico
       objectReference: {fileID: 0}
+    - target: {fileID: 102378, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_TagString
+      value: Country
+      objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.13145177
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.000000009458745
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.16508698
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6243528
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00000001443159
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7811425
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000033018377
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1324,15 +2142,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 102.731
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2300784, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2301506, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       propertyPath: m_Enabled
@@ -1359,6 +2181,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       insertIndex: 2
       addedObject: {fileID: 27427836}
+    - targetCorrespondingSourceObject: {fileID: 400056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1818396871}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       insertIndex: -1
@@ -1369,12 +2194,24 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1296122994}
+    - targetCorrespondingSourceObject: {fileID: 100056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1296122996}
+    - targetCorrespondingSourceObject: {fileID: 100056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1296122995}
+    - targetCorrespondingSourceObject: {fileID: 100056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1296122997}
+    - targetCorrespondingSourceObject: {fileID: 100788, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 832538883}
+    - targetCorrespondingSourceObject: {fileID: 100874, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 55410038}
     - targetCorrespondingSourceObject: {fileID: 101512, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1712467258}
-    - targetCorrespondingSourceObject: {fileID: 101512, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1712467263}
+      addedObject: {fileID: 1712467275}
   m_SourcePrefab: {fileID: 100100000, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
 --- !u!1001 &1164754068
 PrefabInstance:
@@ -1457,7 +2294,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296122990}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e6038ec3daa734c94965d3e772ac69, type: 3}
   m_Name: 
@@ -1576,6 +2413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7a6451b1abf22a44a74e2099c3ea1a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  countriesParent: {fileID: 55410037}
   audioSource: {fileID: 1296122993}
   countryAudios: []
   earthTransform: {fileID: 1296122992}
@@ -1584,69 +2422,28 @@ MonoBehaviour:
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   borderWidth: 0.02
   normalPush: 0.001
-  transparentAlpha: 0.2
+  transparentAlpha: 1
   targetDistance: 2
   rotationSpeed: 1.5
---- !u!1 &1394416929 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2870926216202133872, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
-  m_PrefabInstance: {fileID: 1736624505}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1394416931
+  isAnyCountryActive: 0
+--- !u!114 &1296122995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1394416929}
+  m_GameObject: {fileID: 1296122990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33fdf8b58843bf54aa886d434c79a5ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  earthTransform: {fileID: 1296122992}
-  cameraTransform: {fileID: 0}
-  slider: {fileID: 0}
-  earthRadius: 1
-  surfaceOffset: 0.15
-  verticalOffset: -0.2
-  tiltAngle: 15
-  rotationRange: 360
-  clockwise: 1
---- !u!114 &1619727944 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8357166032213166905, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
-  m_PrefabInstance: {fileID: 1164754068}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0710b5cdb9f43548bc89d614a269715, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1712467252 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 101512, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
-  m_PrefabInstance: {fileID: 1132788971}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1712467258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712467252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
+  m_Script: {fileID: 11500000, guid: d9ad66e7cc9a2754d8ea989740c9f00d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 1
   m_DistanceCalculationMode: 1
-  m_SelectMode: 0
+  m_SelectMode: 1
   m_FocusMode: 1
   m_CustomReticle: {fileID: 0}
   m_AllowGazeInteraction: 0
@@ -1676,31 +2473,7 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1712467263}
-        m_TargetAssemblyTypeName: ContextMenuSpawner, Assembly-CSharp
-        m_MethodName: ShowMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1296122994}
-        m_TargetAssemblyTypeName: CountryClickController, Assembly-CSharp
-        m_MethodName: FocusCountryWrapper
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1712467252}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -1725,7 +2498,494 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
---- !u!114 &1712467263
+  isGazePinchSelected:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  isRaySelected:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  isPokeSelected:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  isGrabSelected:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  isGazeHovered:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  isGazePinchHovered:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  isRayHovered:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  isGrabHovered:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  isPokeHovered:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  isActiveHovered:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  disabledInteractorTypes:
+  - reference: MixedReality.Toolkit.IPokeInteractor, MixedReality.Toolkit.Core
+  <ToggleMode>k__BackingField: 0
+  <SelectThreshold>k__BackingField: 0.9
+  <DeselectThreshold>k__BackingField: 0.1
+  <TriggerOnRelease>k__BackingField: 1
+  <UseGazeDwell>k__BackingField: 0
+  <GazeDwellTime>k__BackingField: 1
+  <UseFarDwell>k__BackingField: 0
+  <FarDwellTime>k__BackingField: 1
+  allowSelectByVoice: 1
+  speechRecognitionKeyword: select
+  <VoiceRequiresFocus>k__BackingField: 1
+  <SelectRequiresHover>k__BackingField: 0
+  <IsToggled>k__BackingField:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  <OnClicked>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnEnabled>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnDisabled>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  hostTransform: {fileID: 1296122992}
+  allowedManipulations: -1
+  allowedInteractionTypes: 2
+  rigidbodyMovementType: 0
+  applyTorque: 1
+  springForceSoftness: 0.1
+  springTorqueSoftness: 0.1
+  springDamping: 1
+  springForceLimit: 100
+  rotationAnchorNear: 0
+  rotationAnchorFar: 0
+  releaseBehavior: 3
+  transformSmoothingLogicType:
+    reference: MixedReality.Toolkit.SpatialManipulation.DefaultTransformSmoothingLogic,
+      MixedReality.Toolkit.SpatialManipulation
+  smoothingFar: 1
+  smoothingNear: 1
+  moveLerpTime: 0.001
+  rotateLerpTime: 0.001
+  scaleLerpTime: 0.001
+  enableConstraints: 0
+  constraintsManager: {fileID: 1296122996}
+  manipulationLogicTypes:
+    moveLogicType:
+      reference: MixedReality.Toolkit.SpatialManipulation.MoveLogic, MixedReality.Toolkit.SpatialManipulation
+    rotateLogicType:
+      reference: MixedReality.Toolkit.SpatialManipulation.RotateLogic, MixedReality.Toolkit.SpatialManipulation
+    scaleLogicType:
+      reference: MixedReality.Toolkit.SpatialManipulation.ScaleLogic, MixedReality.Toolkit.SpatialManipulation
+--- !u!114 &1296122996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296122990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50cdab0cd5a0916419324bb54314773d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoConstraintSelection: 1
+  selectedConstraints: []
+--- !u!135 &1296122997
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296122990}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1394416929 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2870926216202133872, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
+  m_PrefabInstance: {fileID: 1736624505}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1394416931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394416929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33fdf8b58843bf54aa886d434c79a5ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  earthTransform: {fileID: 1296122992}
+  cameraTransform: {fileID: 0}
+  slider: {fileID: 0}
+  earthRadius: 1
+  surfaceOffset: 0.15
+  verticalOffset: -0.2
+  tiltAngle: 15
+  rotationRange: 360
+  clockwise: 1
+--- !u!114 &1394416937 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2870926216202133873, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
+  m_PrefabInstance: {fileID: 1736624505}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394416929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31641bdaca0fb7947843a692a69c3242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &1543048486
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 371962925666588288, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 371962925666588288, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 371962925666588288, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371962925666588288, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.294
+      objectReference: {fileID: 0}
+    - target: {fileID: 371962925666588288, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.009999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 803000043656281839, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171515780561787267, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.613
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921957936395810966, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2514795424144451821, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_Name
+      value: LayerSwitchMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2514795424144451821, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3202371420817303702, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3862138754215573308, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3862138754215573308, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3862138754215573308, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.035
+      objectReference: {fileID: 0}
+    - target: {fileID: 3862138754215573308, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.035
+      objectReference: {fileID: 0}
+    - target: {fileID: 3862138754215573308, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.035
+      objectReference: {fileID: 0}
+    - target: {fileID: 3862138754215573308, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.009999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 3862138754215573308, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.269
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117535467238056387, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cd0608b15c0c1dd45bb6134d011bc9b5, type: 2}
+    - target: {fileID: 4218177026345568372, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_Name
+      value: ClimateLegendPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218177026345568372, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4959383026866709473, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: climateLegendPanel
+      value: 
+      objectReference: {fileID: 246445296}
+    - target: {fileID: 5080104269358696089, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_text
+      value: layer type
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080104269358696089, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080104269358696089, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080104269358696089, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080104269358696089, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080104269358696089, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080104269358696089, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281874488
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080104269358696089, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080104269358696089, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364945628776966258, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_text
+      value: Legend information
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364945628776966258, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364945628776966258, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364945628776966258, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364945628776966258, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364945628776966258, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364945628776966258, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281874488
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056975852916880871, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045613959709835703, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045613959709835703, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045613959709835703, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045613959709835703, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045613959709835703, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045613959709835703, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045613959709835703, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045613959709835703, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045613959709835703, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045613959709835703, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045613959709835703, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045613959709835703, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045613959709835703, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045613959709835703, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191170171562960915, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191170171562960915, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191170171562960915, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.009999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191170171562960915, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.522
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4218177026345568372, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 246445296}
+  m_SourcePrefab: {fileID: 100100000, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+--- !u!1 &1627614987 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5908209549497931938, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
+  m_PrefabInstance: {fileID: 1736624505}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1627614988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627614987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33fdf8b58843bf54aa886d434c79a5ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  earthTransform: {fileID: 1296122992}
+  cameraTransform: {fileID: 636881812}
+  slider: {fileID: 1394416937}
+  earthRadius: 0.3
+  surfaceOffset: 0.1
+  verticalOffset: 0.3
+  tiltAngle: 30
+  rotationRange: 360
+  clockwise: 1
+--- !u!1 &1712467252 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 101512, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
+  m_PrefabInstance: {fileID: 1132788971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1712467275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1734,22 +2994,318 @@ MonoBehaviour:
   m_GameObject: {fileID: 1712467252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a322d05ef42940e45a6c77fa00c0bd93, type: 3}
+  m_Script: {fileID: 11500000, guid: 6803edce0201f574f923fd9d10e5b30a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuPrefab: {fileID: 800393547}
-  earth: {fileID: 811577672}
-  uiRoot: {fileID: 0}
-  earthMask:
+  m_InteractionManager: {fileID: 0}
+  m_InteractionLayers:
+    m_Bits: 4294967295
+  m_Handedness: 0
+  m_AttachTransform: {fileID: 0}
+  m_KeepSelectedTargetValid: 1
+  m_DisableVisualsWhenBlockedInGroup: 1
+  m_StartingSelectedInteractable: {fileID: 0}
+  m_StartingTargetFilter: {fileID: 0}
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_SelectInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: Select
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: da03b5e0-85c5-4bc2-b3d5-57466de69bde
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: Select Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: f6445591-a807-4679-bc08-c55086d5e80f
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  m_ActivateInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: Activate
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 7542cf60-8278-4f6a-9126-c0cbb9e89932
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: Activate Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: 4e5fb016-2700-475a-8c82-8d69e95b44e6
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  m_SelectActionTrigger: 1
+  m_AllowHoveredActivate: 0
+  m_TargetPriorityMode: 0
+  m_HideControllerOnSelect: 0
+  m_InputCompatibilityMode: 0
+  m_PlayAudioClipOnSelectEntered: 0
+  m_AudioClipForOnSelectEntered: {fileID: 0}
+  m_PlayAudioClipOnSelectExited: 0
+  m_AudioClipForOnSelectExited: {fileID: 0}
+  m_PlayAudioClipOnSelectCanceled: 0
+  m_AudioClipForOnSelectCanceled: {fileID: 0}
+  m_PlayAudioClipOnHoverEntered: 0
+  m_AudioClipForOnHoverEntered: {fileID: 0}
+  m_PlayAudioClipOnHoverExited: 0
+  m_AudioClipForOnHoverExited: {fileID: 0}
+  m_PlayAudioClipOnHoverCanceled: 0
+  m_AudioClipForOnHoverCanceled: {fileID: 0}
+  m_AllowHoverAudioWhileSelecting: 1
+  m_PlayHapticsOnSelectEntered: 0
+  m_HapticSelectEnterIntensity: 0
+  m_HapticSelectEnterDuration: 0
+  m_PlayHapticsOnSelectExited: 0
+  m_HapticSelectExitIntensity: 0
+  m_HapticSelectExitDuration: 0
+  m_PlayHapticsOnSelectCanceled: 0
+  m_HapticSelectCancelIntensity: 0
+  m_HapticSelectCancelDuration: 0
+  m_PlayHapticsOnHoverEntered: 0
+  m_HapticHoverEnterIntensity: 0
+  m_HapticHoverEnterDuration: 0
+  m_PlayHapticsOnHoverExited: 0
+  m_HapticHoverExitIntensity: 0
+  m_HapticHoverExitDuration: 0
+  m_PlayHapticsOnHoverCanceled: 0
+  m_HapticHoverCancelIntensity: 0
+  m_HapticHoverCancelDuration: 0
+  m_AllowHoverHapticsWhileSelecting: 1
+  m_LineType: 0
+  m_BlendVisualLinePoints: 1
+  m_MaxRaycastDistance: 30
+  m_RayOriginTransform: {fileID: 0}
+  m_ReferenceFrame: {fileID: 0}
+  m_Velocity: 16
+  m_Acceleration: 9.8
+  m_AdditionalGroundHeight: 0.1
+  m_AdditionalFlightTime: 0.5
+  m_EndPointDistance: 30
+  m_EndPointHeight: -10
+  m_ControlPointDistance: 10
+  m_ControlPointHeight: 5
+  m_SampleFrequency: 20
+  m_HitDetectionType: 0
+  m_SphereCastRadius: 0.1
+  m_ConeCastAngle: 6
+  m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 64
-  xrCamera: {fileID: 636881812}
-  countryMask:
-    serializedVersion: 2
-    m_Bits: 128
-  globeMask:
-    serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
+  m_RaycastSnapVolumeInteraction: 1
+  m_HitClosestOnly: 0
+  m_HoverToSelect: 0
+  m_HoverTimeToSelect: 0.5
+  m_AutoDeselect: 0
+  m_TimeToAutoDeselect: 3
+  m_EnableUIInteraction: 1
+  m_BlockUIOnInteractableSelection: 1
+  m_ManipulateAttachTransform: 1
+  m_UseForceGrab: 0
+  m_RotateSpeed: 180
+  m_TranslateSpeed: 1
+  m_RotateReferenceFrame: {fileID: 0}
+  m_RotateMode: 0
+  m_UIHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_UIHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_EnableARRaycasting: 0
+  m_OccludeARHitsWith3DObjects: 0
+  m_OccludeARHitsWith2DObjects: 0
+  m_ScaleMode: 0
+  m_UIPressInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: UI Press
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: d52e1d96-3bd1-47b6-80eb-ba11e42f1e6d
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: UI Press Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: 787b6198-a272-4ef8-a49d-7de9535df55d
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  m_UIScrollInput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: UI Scroll
+      m_Type: 0
+      m_ExpectedControlType: Vector2
+      m_Id: 7b2f2aa9-17bb-4947-8832-22dab69864ac
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualValue: {x: 0, y: 0}
+  m_TranslateManipulationInput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Translate Manipulation
+      m_Type: 0
+      m_ExpectedControlType: Vector2
+      m_Id: a789c04a-85a1-404e-907f-9d73e4e9d423
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualValue: {x: 0, y: 0}
+  m_RotateManipulationInput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Rotate Manipulation
+      m_Type: 0
+      m_ExpectedControlType: Vector2
+      m_Id: 8bc33887-73a7-47c9-b596-2fe19d935226
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualValue: {x: 0, y: 0}
+  m_DirectionalManipulationInput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Directional Manipulation
+      m_Type: 0
+      m_ExpectedControlType: Vector2
+      m_Id: c0df83ca-2b47-4227-9f18-f2fb8acd4a34
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualValue: {x: 0, y: 0}
+  m_ScaleToggleInput:
+    m_InputSourceMode: 2
+    m_InputActionPerformed:
+      m_Name: Scale Toggle
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: cc8ed749-4518-46ff-8ea0-e893e8779100
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionValue:
+      m_Name: Scale Toggle Value
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: ba0d254f-a306-4348-b1bd-5791b409f4c1
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferenceValue: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualPerformed: 0
+    m_ManualValue: 0
+    m_ManualQueuePerformed: 0
+    m_ManualQueueWasPerformedThisFrame: 0
+    m_ManualQueueWasCompletedThisFrame: 0
+    m_ManualQueueValue: 0
+    m_ManualQueueTargetFrame: 0
+  m_ScaleOverTimeInput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Scale Over Time
+      m_Type: 0
+      m_ExpectedControlType: Vector2
+      m_Id: c66b6713-2f17-48bf-8de0-9a40a215d4ec
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualValue: {x: 0, y: 0}
+  m_ScaleDistanceDeltaInput:
+    m_InputSourceMode: 0
+    m_InputAction:
+      m_Name: Scale Distance Delta
+      m_Type: 0
+      m_ExpectedControlType: Axis
+      m_Id: 0a8b589d-f984-4083-8143-ea607df213a3
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualValue: 0
 --- !u!1001 &1736624505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1760,27 +3316,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 118672800903753395, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0000000018626454
+      value: 0.0000000022351745
       objectReference: {fileID: 0}
     - target: {fileID: 118672800903753395, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7763569e-16
+      value: -3.5527137e-16
       objectReference: {fileID: 0}
     - target: {fileID: 118672800903753395, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.1641532e-10
+      value: 2.3283064e-10
       objectReference: {fileID: 0}
     - target: {fileID: 5908209549497931936, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5908209549497931936, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5908209549497931936, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5908209549497931936, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1830,30 +3386,85 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slider_168x40mm_Base
       objectReference: {fileID: 0}
+    - target: {fileID: 5908209549497931938, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7895759338294865978, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.14000003
       objectReference: {fileID: 0}
     - target: {fileID: 7895759338294865978, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0000000018626454
+      value: 0.0000000022351745
       objectReference: {fileID: 0}
     - target: {fileID: 7895759338294865978, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7763569e-16
+      value: -3.5527137e-16
       objectReference: {fileID: 0}
     - target: {fileID: 7895759338294865978, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.1641532e-10
+      value: 2.3283064e-10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5908209549497931938, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1627614988}
     - targetCorrespondingSourceObject: {fileID: 2870926216202133872, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1394416931}
   m_SourcePrefab: {fileID: 100100000, guid: 882e525521c52cb4ab9230fe77b5cd72, type: 3}
+--- !u!1 &1818396870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1818396871}
+  - component: {fileID: 1818396872}
+  m_Layer: 0
+  m_Name: MenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1818396871
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818396870}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1296122992}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1818396872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818396870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a322d05ef42940e45a6c77fa00c0bd93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuPrefab: {fileID: 2514795424144451821, guid: c9e057b26c9eff244b17a0481e02d10e, type: 3}
+  earth: {fileID: 811577672}
+  countryController: {fileID: 1296122994}
+  uiRoot: {fileID: 0}
 --- !u!1001 &1919333884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1862,6 +3473,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2351505566903569412, guid: acbf65a81ce2cf94f82a0809298acf70, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2351505567455720332, guid: acbf65a81ce2cf94f82a0809298acf70, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1872,7 +3487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2351505567455720332, guid: acbf65a81ce2cf94f82a0809298acf70, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.3
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2351505567455720332, guid: acbf65a81ce2cf94f82a0809298acf70, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1916,9 +3531,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 705507995}
-  - {fileID: 1132788971}
   - {fileID: 1919333884}
   - {fileID: 118375906}
   - {fileID: 961702955}
+  - {fileID: 1132788971}
+  - {fileID: 1543048486}
   - {fileID: 1736624505}
-  - {fileID: 1164754068}
+  - {fileID: 938098658}

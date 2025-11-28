@@ -1,0 +1,33 @@
+{
+  "countries": [
+    {
+      "name": "United States",
+      "climate": "The United States has highly diverse climates, from Alaska’s subarctic cold to Hawaii’s tropical warmth. Northern and midwestern areas have cold winters and hot summers, while the south is warm and humid. The west is mostly dry and desert-like, showing how the country spans nearly every climate type on Earth.",
+      "nature": "The U.S. landscape includes mountains, plains, deserts, rivers, and vast coastlines. The Appalachians shape the east, the Great Plains stretch through the center, and the Rockies dominate the west. Natural landmarks such as Yellowstone, the Grand Canyon, and the Great Lakes reflect its geological diversity.",
+      "humanactivity": "The United States is a global economic and technological leader with a diverse industrial base. High-tech, finance, and research drive development, while regions differ in prosperity — industrial decline contrasts with innovation hubs like Silicon Valley.",
+<<<<<<< HEAD
+      "climateType": "The climate type of the United States includes humid subtropical in the southeast, hot desert in the southwest, humid warm-summer in the northeast and Midwest"
+=======
+      "climateType": "The climate type of the United States includes humid subtropical in the southeast, hot desert in the southwest, humid continental warm-summer in the northeast and Midwest, subarctic to extremely cold subarctic in Alaska, and tropical rainforest in Hawaii."
+>>>>>>> earth_menu_lefthand0
+    },
+    {
+      "name": "Canada",
+      "climate": "Canada’s climate is mostly cold, with long snowy winters and short summers. The north is polar and extremely cold, the central plains have large temperature ranges, and the Pacific coast is mild and rainy year-round.",
+      "nature": "Canada’s land is dominated by mountains, forests, and lakes. The Rockies rise in the west, while vast plains occupy the center. The country holds abundant freshwater resources and extensive boreal forests, making its landscapes rich and pristine.",
+      "humanactivity": "Canada is a highly developed nation with abundant natural resources. Energy, mining, and technology are key sectors, and cities like Toronto and Vancouver serve as economic hubs. The population enjoys high living standards and strong social welfare.",
+      "climateType": "The climate type of Canada is mostly subarctic and extremely cold subarctic across the interior and north, with tundra and ice cap conditions in the Arctic, and humid continental warm-summer along parts of the southern populated regions."
+    },
+    {
+      "name": "Mexico",
+      "climate": "Mexico’s climate ranges from dry deserts in the north to humid tropics in the south. The central plateau is temperate, while coastal regions are hot and often affected by tropical storms or hurricanes.",
+      "nature": "Mexico’s terrain combines mountains, plateaus, and long coastlines. The country lies on active volcanic and earthquake zones, and its varied geography supports diverse ecosystems from deserts to rainforests.",
+      "humanactivity": "Mexico is an emerging industrialized nation with strong manufacturing, oil, and tourism sectors. Economic growth is uneven across regions, but cultural creativity and social vitality remain central to its identity.",
+      "climateType": "The climate type of Mexico spans hot desert and hot semi-arid in the north, warm-summer Mediterranean in some northwest coastal areas, and tropical savanna to tropical monsoon and tropical rainforest climates in the south."
+    }
+<<<<<<< HEAD
+
+=======
+>>>>>>> earth_menu_lefthand0
+  ]
+}

@@ -8,6 +8,12 @@ using Microsoft.MixedReality.Toolkit;        // 必需命名空间
 /// 点击国家 → 居中放大 + 红色边界 + 半透明 + 标签（整合 CountryHighlighter 全逻辑）
 public class CountryClickController : MonoBehaviour
 {
+    //[Header("Country Pull-out")]
+    //public CountryPulloutController pulloutController;
+
+    [Header("Country Parent")]
+    public Transform countriesParent;
+
     [Header("Audio Settings")]
     public AudioSource audioSource;   // 播放器组件（统一播放）
     [Tooltip("配置国家与音频的映射表")]
@@ -29,7 +35,7 @@ public class CountryClickController : MonoBehaviour
     public Color highlightColor = Color.red;
     public float borderWidth = 0.02f;    // 描边粗细（CountryHighlighter 的 width）
     public float normalPush = 0.001f;   // 防 ZFighting 的外推距离
-    [Range(0, 1)] public float transparentAlpha = 0.2f;     // 国家内部透明度
+    [Range(0, 1)] public float transparentAlpha = 1.0f;     // 国家内部透明度
 
     //[Header("Label")]
     //public float labelOffset = 0.1f;            // 标签离地表距离
@@ -41,6 +47,8 @@ public class CountryClickController : MonoBehaviour
     //[Header("UI Controller")]
     //public UIController uiController;
 
+    [HideInInspector]
+    public bool isAnyCountryActive = false;
 
     // 运行时引用
     private GameObject currentLabel;
@@ -52,6 +60,16 @@ public class CountryClickController : MonoBehaviour
     private Coroutine currentAnim;
 
     private Vector3 baseScale;
+    // 所有当前高亮的国家
+    private List<GameObject> highlightedCountries = new List<GameObject>();
+
+    // 国家合并（别名映射）
+    bool IsChinaOrTaiwan(string name)
+    {
+        return name == "China" || name == "Taiwan";
+    }
+
+
 
     void Start()
     {
@@ -61,6 +79,20 @@ public class CountryClickController : MonoBehaviour
 
     void Update()
     {
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //    if (Physics.Raycast(ray, out RaycastHit hit))
+        //    {
+        //        if (hit.collider && hit.collider.GetComponent<MeshFilter>())
+        //            FocusCountry(hit.collider.gameObject);
+        //    }
+        //    else
+        //    {
+        //        // 点空白：清理并可选复位
+        //        ClearHighlight();
+        //    }
+        //}
         if (Input.GetMouseButtonDown(0))
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -85,6 +117,14 @@ public class CountryClickController : MonoBehaviour
     // 主入口：点击国家
     void FocusCountry(GameObject country)
     {
+        string name = country.name;
+
+        if (IsChinaOrTaiwan(name))
+        {
+            // 把点击统一映射为“China”
+            country = transform.Find("China")?.gameObject ?? country;
+        }
+
         if (country == currentCountry) return;
 
         // 清理旧的
@@ -95,8 +135,16 @@ public class CountryClickController : MonoBehaviour
         // 半透明 + 红色边界（完整 CountryHighlighter 逻辑）
         HighlightCountry(country);
 
+        // 如果点击的是 China 或 Taiwan，额外高亮另一个
+        if (IsChinaOrTaiwan(name))
+        {
+            var other = countriesParent.Find(name == "China" ? "Taiwan" : "China");
+            if (other) HighlightCountry(other.gameObject);
+        }
+
         // 标签
         ShowLabel(country);
+        //pulloutController.PullOutCountry(country);
 
         // 居中 + 摆正（国家真北对齐相机北）+ 放大
         var mf = country.GetComponent<MeshFilter>();
@@ -134,10 +182,12 @@ public class CountryClickController : MonoBehaviour
         //    uiController.ShowControlPanels(country.name);
         //}
 
+        isAnyCountryActive = true;
+
     }
 
     // 半透明 + 红色边界（完整移植自 CountryHighlighter）
-    void HighlightCountry(GameObject country)
+    public void HighlightCountry(GameObject country)
     {
         var mr = country.GetComponent<MeshRenderer>();
         var mf = country.GetComponent<MeshFilter>();
@@ -163,6 +213,8 @@ public class CountryClickController : MonoBehaviour
 
         // —— 生成红色边界（边界网格法）——
         currentBorder = GenerateBorder(country, borderWidth, normalPush, highlightColor);
+        if (!highlightedCountries.Contains(country))
+            highlightedCountries.Add(country);
     }
 
     // 标签：放在包围盒中心外沿，避免遮挡
@@ -216,8 +268,25 @@ public class CountryClickController : MonoBehaviour
 
 
     // 恢复上一个国家
-    void ClearHighlight()
+    public void ClearHighlight()
     {
+        // 清除所有国家（包括 China + Taiwan）的高亮
+        foreach (var c in highlightedCountries)
+        {
+            if (c == null) continue;
+
+            var mr = c.GetComponent<MeshRenderer>();
+            if (mr && originalMat)
+                mr.sharedMaterial = originalMat;    // 恢复原来的材质
+
+            // 清除该国家的边界对象
+            var border = c.transform.Find(c.name + "_BorderRuntime");
+            if (border) Destroy(border.gameObject);
+        }
+
+        highlightedCountries.Clear();
+
+        // 清除标签 & 动画
         if (currentLabel) Destroy(currentLabel);
         if (currentBorder) Destroy(currentBorder);
 
@@ -231,6 +300,28 @@ public class CountryClickController : MonoBehaviour
         originalMat = null;
         currentAnim = null;
     }
+
+    // 设置国家透明度
+    // 供外部调用：把当前选中的国家改成指定透明度（0~1）
+    public void SetCurrentCountryAlpha(float alpha)
+    {
+        // 没有当前国家就什么也不做
+        if (!currentCountry) return;
+
+        var mr = currentCountry.GetComponent<MeshRenderer>();
+        if (!mr) return;
+
+        var mat = mr.sharedMaterial;
+        if (!mat) return;
+
+        if (mat.HasProperty("_Color"))
+        {
+            Color c = mat.color;
+            c.a = Mathf.Clamp01(alpha);
+            mat.color = c;
+        }
+    }
+
 
     // ======= 旋转 + 放大（两步：居中 → 真北对齐相机北）=======
     IEnumerator RotateAndZoom(Vector3 targetDir, Vector3 camDir, GameObject country)

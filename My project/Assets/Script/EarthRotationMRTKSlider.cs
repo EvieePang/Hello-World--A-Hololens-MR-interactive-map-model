@@ -1,6 +1,5 @@
-﻿using UnityEngine;
+using UnityEngine;
 using MixedReality.Toolkit.UX;
-using System.Diagnostics;
 
 public class EarthRotationMRTKSlider : MonoBehaviour
 {
@@ -24,6 +23,15 @@ public class EarthRotationMRTKSlider : MonoBehaviour
 
     void Start()
     {
+        if (!slider)
+        {
+            slider = GetComponentInChildren<Slider>();
+            if (!slider)
+            {
+                Debug.LogError("❌ 未找到 Slider 组件！");
+                return;
+            }
+        }
 
         // 注册滑动事件
         slider.OnValueUpdated.AddListener(OnSliderValueChanged);
