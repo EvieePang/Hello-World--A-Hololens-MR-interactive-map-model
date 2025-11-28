@@ -35,7 +35,6 @@ public class ColorbarPanelController : MonoBehaviour
     {
         LoadJSON();
         gameObject.SetActive(true);
-        Debug.Log($"[ColorbarPanel] delete");
     }
 
     private void LoadJSON()
@@ -56,7 +55,6 @@ public class ColorbarPanelController : MonoBehaviour
         Debug.Log($"[ColorbarPanel] Loaded {layerData.layers.Count} layers from JSON");
     }
 
-    // ⭐⭐ 你想要的新版本：只接收 layerType
     public void Show(string layerType)
     {
         Debug.Log($"[ColorbarPanel] Show {layerType}");
@@ -78,7 +76,7 @@ public class ColorbarPanelController : MonoBehaviour
 
         // 设置标题
         if (headerText)
-            headerText.text = $"Colorbar of {UpperFirst(layerType)}";
+            headerText.text = $"Description of {UpperFirst(layerType)} layer";
 
         // 加载 high/low + description
         ApplyLayerInfo(layerType);
@@ -132,6 +130,7 @@ public class ColorbarPanelController : MonoBehaviour
         if (lowValueText) lowValueText.text = layer.low;
         if (highValueText) highValueText.text = layer.high;
         if (colorbarInfoText) colorbarInfoText.text = layer.description;
+       
     }
 
     private string UpperFirst(string s)

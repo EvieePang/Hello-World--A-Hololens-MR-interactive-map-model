@@ -38,11 +38,11 @@ public class ContextMenuSpawner : MonoBehaviour
     private bool IsLeftHandVisible()
     {
         var handsSubsystem = XRSubsystemHelpers.GetFirstRunningSubsystem<HandsAggregatorSubsystem>();
-        if (handsSubsystem == null)
-        {
-            Debug.Log("[HandCheck] HandsAggregatorSubsystem == null");
-            return false;
-        }
+        //if (handsSubsystem == null)
+        //{
+        //    Debug.Log("[HandCheck] HandsAggregatorSubsystem == null");
+        //    return false;
+        //}
 
         bool hasPalm = handsSubsystem.TryGetJoint(TrackedHandJoint.Palm, XRNode.LeftHand, out HandJointPose palmPose);
         bool isTracked = handsSubsystem.TryGetEntireHand(XRNode.LeftHand, out var leftHand);
