@@ -1,0 +1,44 @@
+{
+  "layers": [
+  {
+    "type": "nature",
+    "low": "0m",
+    "high": "4000m"
+  },
+  {
+    "type": "terrain",
+    "low": "0°",
+    "high": "90°"
+  },
+  {
+    "type": "forest",
+    "low": "0m",
+    "high": "15m"
+  },
+  {
+    "type": "humanactivity",
+    "low": "0",
+    "high": "100"
+  },
+  {
+    "type": "gdp",
+    "low": "1000 $",
+    "high": "80000 $"
+  },
+  {
+    "type": "population",
+    "low": "0",
+    "high": "100"
+  },
+  {
+    "type": "temperature",
+    "low": "-10 °C",
+    "high": "30 °C"
+  },
+  {
+    "type": "precipitation",
+    "low": "0 mm/year",
+    "high": "2000 mm/year"
+  }
+]
+}

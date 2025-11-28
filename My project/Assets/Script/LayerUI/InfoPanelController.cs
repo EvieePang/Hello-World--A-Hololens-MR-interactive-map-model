@@ -9,6 +9,12 @@ public class CountryData
     public string climate;
     public string nature;
     public string humanactivity;
+    public string temperature;
+    public string precipitation;
+    public string terrain;
+    public string forest;
+    public string gdp;
+    public string population;
 }
 
 [System.Serializable]
@@ -86,6 +92,18 @@ public class InfoPanelController : MonoBehaviour
                 return $" <b>Nature Information</b>:\n{match.nature}";
             case "humanactivity":
                 return $" <b>Human Activity Information</b>:\n{match.humanactivity}";
+            case "terrain":
+                return $" <b>Terrain Information</b>:\n{match.terrain}";
+            case "forest":
+                return $" <b>Forest Information</b>:\n{match.forest}";
+            case "temperature":
+                return $" <b>Temperature Information</b>:\n{match.temperature}";
+            case "precipitation":
+                return $" <b>Precipitationn Information</b>:\n{match.precipitation}";
+            case "gdp":
+                return $" <b>GDP Information</b>:\n{match.gdp}";
+            case "population":
+                return $" <b>Population Information</b>:\n{match.population}";
             default:
                 return $"{category} info for {currentCountry} not found.";
         }
