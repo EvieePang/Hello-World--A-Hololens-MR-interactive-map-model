@@ -63,7 +63,7 @@ public class ClimateLegendPanelController : MonoBehaviour
     /// <param name="climateLabel">这个国家的气候类型，比如 "Hot desert"</param>
     public void Show(string countryName)
     {
-        Debug.Log($"[Show] countryName received: '{countryName}'");
+        Debug.Log($"[ClimateLegendPanelShow] countryName received: '{countryName}'");
         Awake();
 
         // 标题（可改可不改）

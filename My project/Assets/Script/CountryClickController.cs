@@ -25,6 +25,8 @@ public class CountryClickController : MonoBehaviour
         public string countryName;   // 国家名（必须和 GameObject 名字一致）
         public AudioClip clip;       // 对应的音频
     }
+    public static string selectedCountry;
+
 
     [Header("Scene References")]
     public Transform earthTransform;            // 拖 Earth
@@ -54,6 +56,7 @@ public class CountryClickController : MonoBehaviour
     private GameObject currentLabel;
     private GameObject currentBorder;
     private GameObject currentCountry;
+
 
     // 记录并恢复原材质
     private Material originalMat;
@@ -118,6 +121,7 @@ public class CountryClickController : MonoBehaviour
     void FocusCountry(GameObject country)
     {
         string name = country.name;
+        selectedCountry = name;
 
         if (IsChinaOrTaiwan(name))
         {

@@ -40,7 +40,7 @@ public class InfoPanelController : MonoBehaviour
         if (jsonFile != null)
         {
             dataCollection = JsonUtility.FromJson<CountryDataCollection>(jsonFile.text);
-            //UnityEngine.Debug.Log("[InfoPanelController] JSON loaded successfully.");
+            UnityEngine.Debug.Log("[InfoPanelController] JSON loaded successfully.");
         }
         else
         {

@@ -5,6 +5,7 @@ using MixedReality.Toolkit.Subsystems;
 using MixedReality.Toolkit.UX;
 using UnityEngine;
 using UnityEngine.XR;
+using static UnityEngine.XR.OpenXR.Features.Interactions.PalmPoseInteraction;
 
 public class ContextMenuSpawner : MonoBehaviour
 {
@@ -48,7 +49,7 @@ public class ContextMenuSpawner : MonoBehaviour
         bool palmValid = hasPalm && palmPose.Position.sqrMagnitude > 0.0001f;
 
         bool result = hasPalm && isTracked && palmValid;
-        Debug.Log($"[HandCheck] hasPalm={hasPalm}, isTracked={isTracked}, palmValid={palmValid}, result={result}, palmPos={palmPose.Position}");
+        //Debug.Log($"[HandCheck] hasPalm={hasPalm}, isTracked={isTracked}, palmValid={palmValid}, result={result}, palmPos={palmPose.Position}");
         return result;
     }
 
@@ -112,7 +113,7 @@ public class ContextMenuSpawner : MonoBehaviour
             if (!earth)
                 earth = FindObjectOfType<EarthLayerSwitcher>();
             menu.target = earth;
-            menu.SetCountryName(gameObject.name);
+            menu.SetCountryName(CountryClickController.selectedCountry);
         }
 
         // 绑定 Exit
