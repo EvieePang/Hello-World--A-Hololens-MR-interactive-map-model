@@ -29,7 +29,7 @@ public class LayerMenu : MonoBehaviour
     public int agricultureIndex = 8;
 
     [Header("Legend Panels")]
-    public ClimateLegendPanelController climateLegendPanel;  // drag your prefab instance here
+    public LegendPanelController LegendPanel;  // drag your prefab instance here
     public ColorbarPanelController colorbarPanel;
 
 
@@ -151,7 +151,7 @@ public class LayerMenu : MonoBehaviour
         if (panelHumanActivity) panelHumanActivity.SetActive(false);
         if (infoPanel) infoPanel.Hide();
 
-        if (climateLegendPanel) climateLegendPanel.Hide();
+        if (LegendPanel) LegendPanel.Hide();
         if (colorbarPanel) colorbarPanel.Hide();
 
     }
@@ -169,7 +169,7 @@ public class LayerMenu : MonoBehaviour
 
         if (colorbarPanel!= null)
         {
-            colorbarPanel.Show(currentCountryName, "nature");
+            colorbarPanel.Show("nature");
         }
     }
 
@@ -186,7 +186,7 @@ public class LayerMenu : MonoBehaviour
 
         if (colorbarPanel != null)
         {
-            colorbarPanel.Show(currentCountryName, "terrain");
+            colorbarPanel.Show("terrain");
         }
     }
 
@@ -203,7 +203,7 @@ public class LayerMenu : MonoBehaviour
 
         if (colorbarPanel != null)
         {
-            colorbarPanel.Show(currentCountryName, "forest");
+            colorbarPanel.Show("forest");
         }
     }
 
@@ -219,21 +219,21 @@ public class LayerMenu : MonoBehaviour
             infoPanel.Show("Climate");  
         }
 
-        if (climateLegendPanel != null)
+        if (LegendPanel != null)
         {
-            climateLegendPanel.Show(currentCountryName);  
+            LegendPanel.Show("climate");  
         }
         else
         {
-            Debug.LogWarning("[LayerMenu] climateLegendPanel is not assigned!");
+            Debug.LogWarning("[LayerMenu] LegendPanel is not assigned!");
         }
     }
 
     public void OpenTemperature()
     {
         if (panelRoot) panelRoot.SetActive(false);
-        if (panelNature) panelClimate.SetActive(true);
-        if (climateLegendPanel) climateLegendPanel.Hide();
+        if (panelClimate) panelClimate.SetActive(true);
+        if (LegendPanel) LegendPanel.Hide();
 
         if (infoPanel)
         {
@@ -243,15 +243,15 @@ public class LayerMenu : MonoBehaviour
 
         if (colorbarPanel != null)
         {
-            colorbarPanel.Show(currentCountryName, "temperature");
+            colorbarPanel.Show("temperature");
         }
     }
 
     public void OpenPrecipitation()
     {
         if (panelRoot) panelRoot.SetActive(false);
-        if (panelNature) panelClimate.SetActive(true);
-        if (climateLegendPanel) climateLegendPanel.Hide();
+        if (panelClimate) panelClimate.SetActive(true);
+        if (LegendPanel) LegendPanel.Hide();
 
         if (infoPanel)
         {
@@ -261,14 +261,14 @@ public class LayerMenu : MonoBehaviour
 
         if (colorbarPanel != null)
         {
-            colorbarPanel.Show(currentCountryName, "precipitation");
+            colorbarPanel.Show("precipitation");
         }
     }
 
     public void OpenHumanActivity()
     {
         if (panelRoot) panelRoot.SetActive(false);
-        if (panelHumanActivity) panelHumanActivity.SetActive(true);
+        panelHumanActivity.SetActive(true);
 
         if (infoPanel)
         {
@@ -278,41 +278,48 @@ public class LayerMenu : MonoBehaviour
 
         if (colorbarPanel != null)
         {
-            colorbarPanel.Show(currentCountryName, "humanactivity");
+            colorbarPanel.Show("humanactivity");
         }
     }
 
     public void OpenGDP()
     {
         if (panelRoot) panelRoot.SetActive(false);
-        if (panelNature) panelHumanActivity.SetActive(true);
+        if (panelHumanActivity) panelHumanActivity.SetActive(true);
 
         if (infoPanel)
         {
             infoPanel.SetCountry(currentCountryName);
             infoPanel.Show("gdp");
         }
-
+        if (LegendPanel != null)
+        {
+            LegendPanel.Hide();
+        }
         if (colorbarPanel != null)
         {
-            colorbarPanel.Show(currentCountryName, "gdp");
+            colorbarPanel.Show("gdp");
         }
     }
 
     public void OpenPopulation()
     {
         if (panelRoot) panelRoot.SetActive(false);
-        if (panelNature) panelHumanActivity.SetActive(true);
+        if (panelHumanActivity) panelHumanActivity.SetActive(true);
 
+        if (colorbarPanel != null)
+        {
+            colorbarPanel.Hide();
+        }
         if (infoPanel)
         {
             infoPanel.SetCountry(currentCountryName);
             infoPanel.Show("Population");
         }
 
-        if (colorbarPanel != null)
+        if (LegendPanel != null)
         {
-            colorbarPanel.Show(currentCountryName, "population");
+            LegendPanel.Show("population");
         }
     }
 

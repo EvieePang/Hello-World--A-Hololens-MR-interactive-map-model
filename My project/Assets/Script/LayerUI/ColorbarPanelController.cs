@@ -8,6 +8,7 @@ public class LayerInfo
     public string type;
     public string low;
     public string high;
+    public string description;
 }
 
 [System.Serializable]
@@ -19,61 +20,71 @@ public class LayerInfoCollection
 public class ColorbarPanelController : MonoBehaviour
 {
     [Header("UI Refs")]
-    public TMP_Text headerText;        // 显示当前图层类型，如 "Terrain"
-    public TMP_Text countryNameText;   // 显示国家名
-    public TMP_Text highValueText;     // 高值标签
-    public TMP_Text lowValueText;      // 低值标签
+    public TMP_Text headerText;        // 标题：Colorbar of xx
+    public TMP_Text highValueText;     // 高值
+    public TMP_Text lowValueText;      // 低值
+    public TMP_Text colorbarInfoText;  // 描述文字
 
     [Header("Renderer for colorbar material")]
-    public Renderer colorbarRenderer;  // 显示colorbar的Quad
+    public Renderer colorbarRenderer;  // 颜色条材质显示
 
     private LayerInfoCollection layerData;
+    private bool jsonLoaded = false;
 
     private void Awake()
     {
-        // 从 Resources 加载 colorbar_info.json
+        LoadJSON();
+        gameObject.SetActive(true);
+        Debug.Log($"[ColorbarPanel] delete");
+    }
+
+    private void LoadJSON()
+    {
+        if (jsonLoaded) return;
+
         TextAsset jsonFile = Resources.Load<TextAsset>("colorbar_info");
+
         if (jsonFile == null)
         {
-            Debug.LogError("[ColorbarPanelController] Failed to load Resources/colorbar_info.json");
+            Debug.LogError("[ColorbarPanel] Failed to load colorbar_info.json");
             return;
         }
 
         layerData = JsonUtility.FromJson<LayerInfoCollection>(jsonFile.text);
-        if (layerData == null || layerData.layers == null)
+        jsonLoaded = true;
+
+        Debug.Log($"[ColorbarPanel] Loaded {layerData.layers.Count} layers from JSON");
+    }
+
+    // ⭐⭐ 你想要的新版本：只接收 layerType
+    public void Show(string layerType)
+    {
+        Debug.Log($"[ColorbarPanel] Show {layerType}");
+
+        gameObject.SetActive(true);
+
+        if (layerType.ToLower() == "humanactivity")
         {
-            Debug.LogError("[ColorbarPanelController] Failed to parse colorbar_info.json");
+            if (colorbarRenderer) colorbarRenderer.gameObject.SetActive(false);
+            if (highValueText) highValueText.gameObject.SetActive(false);
+            if (lowValueText) lowValueText.gameObject.SetActive(false);
         }
         else
         {
-            Debug.Log($"[ColorbarPanelController] Loaded {layerData.layers.Count} layers from JSON.");
+            if (colorbarRenderer) colorbarRenderer.gameObject.SetActive(true);
+            if (highValueText) highValueText.gameObject.SetActive(true);
+            if (lowValueText) lowValueText.gameObject.SetActive(true);
         }
 
-        // 默认隐藏
-        gameObject.SetActive(false);
-    }
+        // 设置标题
+        if (headerText)
+            headerText.text = $"Colorbar of {UpperFirst(layerType)}";
 
-    /// <summary>
-    /// 显示 Colorbar 面板，并加载对应材质与高低值
-    /// </summary>
-    public void Show(string countryName, string layerType)
-    {
-        Debug.Log($"[ColorbarPanelController] Show called: {countryName}, layer={layerType}");
-        Debug.Log($"[ColorbarPanelController] GameObject active before: {gameObject.activeSelf}");
-        gameObject.SetActive(true);
-        Debug.Log($"[ColorbarPanelController] GameObject active after: {gameObject.activeSelf}");
-        Awake();
+        // 加载 high/low + description
+        ApplyLayerInfo(layerType);
 
-        if (headerText != null)
-            headerText.text = $"Colorbar of {layerType}";
-
-        if (countryNameText != null)
-            countryNameText.text = $"in {countryName}:";
-
+        // 加载材质
         LoadColorbarMaterial(layerType);
-        SetHighLowValues(layerType);
-
-        gameObject.SetActive(true);
     }
 
     public void Hide()
@@ -81,59 +92,51 @@ public class ColorbarPanelController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    /// <summary>
-    /// 从 Resources/Colorbars 下加载对应的 colorbar 材质
-    /// </summary>
+    // 加载材质
     private void LoadColorbarMaterial(string layerType)
     {
-        if (colorbarRenderer == null)
-        {
-            Debug.LogWarning("[ColorbarPanelController] colorbarRenderer not assigned!");
-            return;
-        }
+        if (colorbarRenderer == null) return;
 
-        string path = $"Colorbars/{layerType}_colorbar";  // e.g. Resources/Colorbars/terrain_colorbar.mat
+        string path = $"Colorbars/{layerType}_colorbar";
         Material mat = Resources.Load<Material>(path);
 
         if (mat != null)
         {
             colorbarRenderer.material = mat;
-            Debug.Log($"[ColorbarPanelController] Loaded material: {path}");
+            Debug.Log($"[ColorbarPanel] Loaded material {path}");
         }
         else
         {
-            Debug.LogWarning($"[ColorbarPanelController] Material not found at: {path}");
+            Debug.LogWarning($"[ColorbarPanel] Material not found at {path}");
         }
     }
 
-    /// <summary>
-    /// 从 JSON 中找到对应 layer 的 high / low 值并更新 UI
-    /// </summary>
-    private void SetHighLowValues(string layerType)
+    // high / low / description
+    private void ApplyLayerInfo(string layerType)
     {
-        if (layerData == null || layerData.layers == null)
+        if (layerData == null || layerData.layers == null) return;
+
+        LayerInfo layer = layerData.layers.Find(
+            l => l.type.ToLower() == layerType.ToLower()
+        );
+
+        if (layer == null)
         {
-            Debug.LogWarning("[ColorbarPanelController] No layer data loaded.");
+            Debug.LogWarning($"[ColorbarPanel] No layer info for {layerType}");
+            if (highValueText) highValueText.text = "-";
+            if (lowValueText) lowValueText.text = "-";
+            if (colorbarInfoText) colorbarInfoText.text = "No description available.";
             return;
         }
 
-        LayerInfo layer = layerData.layers.Find(l => l.type.ToLower() == layerType.ToLower());
-        if (layer != null)
-        {
-            if (lowValueText != null)
-                lowValueText.text = layer.low;
+        if (lowValueText) lowValueText.text = layer.low;
+        if (highValueText) highValueText.text = layer.high;
+        if (colorbarInfoText) colorbarInfoText.text = layer.description;
+    }
 
-            if (highValueText != null)
-                highValueText.text = layer.high;
-
-            Debug.Log($"[ColorbarPanelController] {layerType} range: {layer.low} - {layer.high}");
-        }
-        else
-        {
-            Debug.LogWarning($"[ColorbarPanelController] Layer type '{layerType}' not found in JSON!");
-            if (lowValueText != null) lowValueText.text = "-";
-            if (highValueText != null) highValueText.text = "-";
-        }
+    private string UpperFirst(string s)
+    {
+        if (string.IsNullOrEmpty(s)) return s;
+        return char.ToUpper(s[0]) + s.Substring(1);
     }
 }
-

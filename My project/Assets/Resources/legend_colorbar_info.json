@@ -1,0 +1,14 @@
+{
+    "layers": [
+        {
+            "layer": "climate",
+            "text": "Each color is correspongding to a climate type",
+            "image": "climate_legend"
+        },
+        {
+            "layer": "population",
+            "text": "Population count (persons per cell): lower values indicate sparsely populated or uninhabited areas, while higher values represent densely populated regions with more human activity.",
+            "image": "population_legend"
+        }
+    ]
+}

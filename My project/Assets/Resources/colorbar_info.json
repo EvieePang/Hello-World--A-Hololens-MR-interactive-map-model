@@ -1,44 +1,52 @@
 {
   "layers": [
-  {
-    "type": "nature",
-    "low": "0m",
-    "high": "4000m"
-  },
-  {
-    "type": "terrain",
-    "low": "0°",
-    "high": "90°"
-  },
-  {
-    "type": "forest",
-    "low": "0m",
-    "high": "15m"
-  },
-  {
-    "type": "humanactivity",
-    "low": "0",
-    "high": "100"
-  },
-  {
-    "type": "gdp",
-    "low": "1000 $",
-    "high": "80000 $"
-  },
-  {
-    "type": "population",
-    "low": "0",
-    "high": "100"
-  },
-  {
-    "type": "temperature",
-    "low": "-10 °C",
-    "high": "30 °C"
-  },
-  {
-    "type": "precipitation",
-    "low": "0 mm/year",
-    "high": "2000 mm/year"
-  }
-]
+    {
+      "type": "nature",
+      "low": "0m",
+      "high": "4000m",
+      "description": "Represents natural terrain elevation, ranging from lowland regions to high mountain areas."
+    },
+    {
+      "type": "terrain",
+      "low": "0°",
+      "high": "90°",
+      "description": "Slope median in degrees (°): 0° denotes flat surfaces, while values approaching 90° indicate very steep or cliff-like terrain."
+    },
+    {
+      "type": "forest",
+      "low": "0m",
+      "high": "15m",
+      "description": "Canopy height (m): larger values represent taller and more developed forests, often indicating higher biomass and denser canopies."
+    },
+    {
+      "type": "humanactivity",
+      "low": "0",
+      "high": "100",
+      "description": "This NASA global night-lights map captures artificial illumination as a proxy for human settlement and economic activity—bright regions signal dense, active populations; dark regions indicate minimal development."
+    },
+    {
+      "type": "gdp",
+      "low": "1000 $",
+      "high": "80000 $",
+      "description": "GDP per capita (PPP, USD): low values reflect limited economic resources, whereas high values indicate wealthier districts."
+    },
+    {
+      "type": "population",
+      "low": "0",
+      "high": "100",
+      "description": "Population count (persons per cell): lower values indicate sparsely populated or uninhabited areas, while higher values represent densely populated regions with more human activity."
+    },
+    {
+      "type": "temperature",
+      "low": "-10 °C",
+      "high": "30 °C",
+      "description": "Annual average temperature (°C): representing the typical annual thermal conditions at each location."
+    },
+    {
+      "type": "precipitation",
+      "low": "0 mm/year",
+      "high": "2000 mm/year",
+      "description": "Annual average precipitation (mm): indicating the typical yearly moisture availability."
+    }
+  ]
 }

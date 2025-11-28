@@ -285,6 +285,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad5b753b73e311143a85055b15cea562, type: 3}
+--- !u!1 &173278196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2514795424144451821, guid: 19665fe954e58d94c9da54a5e3a22f88, type: 3}
+  m_PrefabInstance: {fileID: 402481819}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &294462290
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,37 +381,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 899137150338768709, guid: 19665fe954e58d94c9da54a5e3a22f88, type: 3}
-      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 899137150338768709, guid: 19665fe954e58d94c9da54a5e3a22f88, type: 3}
-      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 899137150338768709, guid: 19665fe954e58d94c9da54a5e3a22f88, type: 3}
-      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1175486229}
-    - target: {fileID: 899137150338768709, guid: 19665fe954e58d94c9da54a5e3a22f88, type: 3}
-      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 899137150338768709, guid: 19665fe954e58d94c9da54a5e3a22f88, type: 3}
-      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnExitClicked
-      objectReference: {fileID: 0}
-    - target: {fileID: 899137150338768709, guid: 19665fe954e58d94c9da54a5e3a22f88, type: 3}
-      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RootMenuExit, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 899137150338768709, guid: 19665fe954e58d94c9da54a5e3a22f88, type: 3}
-      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 2514795424144451821, guid: 19665fe954e58d94c9da54a5e3a22f88, type: 3}
       propertyPath: m_Name
       value: LayerSwitchMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2514795424144451821, guid: 19665fe954e58d94c9da54a5e3a22f88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218177026345568372, guid: 19665fe954e58d94c9da54a5e3a22f88, type: 3}
+      propertyPath: m_Name
+      value: LegendPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218177026345568372, guid: 19665fe954e58d94c9da54a5e3a22f88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8045613959709835703, guid: 19665fe954e58d94c9da54a5e3a22f88, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2293,17 +2282,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1712467275}
   m_SourcePrefab: {fileID: 100100000, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
---- !u!114 &1175486229 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4839928099531132882, guid: 19665fe954e58d94c9da54a5e3a22f88, type: 3}
-  m_PrefabInstance: {fileID: 402481819}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff3a56f646e05a1428bae1b931cf76e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1296122990 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100056, guid: 335a1b3711df73b4f881593e3bb6b618, type: 3}
@@ -3239,7 +3217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a322d05ef42940e45a6c77fa00c0bd93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuPrefab: {fileID: 2514795424144451821, guid: 19665fe954e58d94c9da54a5e3a22f88, type: 3}
+  menuPrefab: {fileID: 173278196}
   earth: {fileID: 811577672}
   countryController: {fileID: 1296122994}
   uiRoot: {fileID: 0}

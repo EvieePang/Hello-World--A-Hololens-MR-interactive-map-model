@@ -36,7 +36,7 @@ public class InfoPanelController : MonoBehaviour
     private void Awake()
     {
         // Load JSON file from Resources
-        TextAsset jsonFile = Resources.Load<TextAsset>("country_info"); // Assets/Resources/country_info.json
+        TextAsset jsonFile = Resources.Load<TextAsset>("country_info_all"); // Assets/Resources/country_info.json
         if (jsonFile != null)
         {
             dataCollection = JsonUtility.FromJson<CountryDataCollection>(jsonFile.text);
