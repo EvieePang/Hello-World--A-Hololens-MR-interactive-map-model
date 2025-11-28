@@ -25,8 +25,6 @@ public class CountryClickController : MonoBehaviour
         public string countryName;   // 国家名（必须和 GameObject 名字一致）
         public AudioClip clip;       // 对应的音频
     }
-    public static string selectedCountry;
-
 
     [Header("Scene References")]
     public Transform earthTransform;            // 拖 Earth
@@ -38,9 +36,6 @@ public class CountryClickController : MonoBehaviour
     public float borderWidth = 0.02f;    // 描边粗细（CountryHighlighter 的 width）
     public float normalPush = 0.001f;   // 防 ZFighting 的外推距离
     [Range(0, 1)] public float transparentAlpha = 1.0f;     // 国家内部透明度
-
-    //[Header("Label")]
-    //public float labelOffset = 0.1f;            // 标签离地表距离
 
     [Header("Focus / Camera")]
     public float targetDistance = 2.0f;         // 相机到地心的距离（地球半径=1时建议 1.6~2.5）
@@ -57,7 +52,6 @@ public class CountryClickController : MonoBehaviour
     private GameObject currentBorder;
     private GameObject currentCountry;
 
-
     // 记录并恢复原材质
     private Material originalMat;
     private Coroutine currentAnim;
@@ -65,6 +59,10 @@ public class CountryClickController : MonoBehaviour
     private Vector3 baseScale;
     // 所有当前高亮的国家
     private List<GameObject> highlightedCountries = new List<GameObject>();
+    // 保存所有国家的标签（避免重复生成）
+    private Dictionary<GameObject, GameObject> countryLabels = new Dictionary<GameObject, GameObject>();
+    public static string selectedCountry;
+
 
     // 国家合并（别名映射）
     bool IsChinaOrTaiwan(string name)
@@ -78,6 +76,13 @@ public class CountryClickController : MonoBehaviour
     {
         // 记录地球初始缩放，用于防止多次点击累积放大
         baseScale = earthTransform.localScale;
+
+        // === 初始化所有国家的默认黑色边界 ===
+        foreach (Transform c in countriesParent)
+        {
+            CreateStaticBorder(c.gameObject);
+            ShowLabel(c.gameObject);
+        }
     }
 
     void Update()
@@ -96,20 +101,6 @@ public class CountryClickController : MonoBehaviour
         //        ClearHighlight();
         //    }
         //}
-        if (Input.GetMouseButtonDown(0))
-        {
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
-            {
-                if (hit.collider && hit.collider.GetComponent<MeshFilter>())
-                    FocusCountry(hit.collider.gameObject);
-            }
-            else
-            {
-                // 点空白：清理并可选复位
-                ClearHighlight();
-            }
-        }
     }
 
     public void FocusCountryWrapper(GameObject country)
@@ -180,12 +171,6 @@ public class CountryClickController : MonoBehaviour
             }
         }
 
-        //// 告诉UI显示面板并填入国家名
-        //if (uiController)
-        //{
-        //    uiController.ShowControlPanels(country.name);
-        //}
-
         isAnyCountryActive = true;
 
     }
@@ -216,59 +201,73 @@ public class CountryClickController : MonoBehaviour
         mr.sharedMaterial = transparentMat; // 应用半透明
 
         // —— 生成红色边界（边界网格法）——
-        currentBorder = GenerateBorder(country, borderWidth, normalPush, highlightColor);
+        HighlightCountryBorder(country);
         if (!highlightedCountries.Contains(country))
             highlightedCountries.Add(country);
     }
 
+    void HighlightCountryBorder(GameObject country)
+    {
+        string staticName = country.name + "_BorderStatic";
+        string runtimeName = country.name + "_BorderRuntime";
+
+        // 删除旧的 runtime（确保不会重复）
+        var oldR = country.transform.Find(runtimeName);
+        if (oldR) Destroy(oldR.gameObject);
+
+        // 生成新的粗红边界
+        GameObject border = GenerateBorder(
+            country,
+            0.04f,       // 粗边界（可调）
+            0.001f,      // 推开一点点，避免重叠
+            Color.red
+        );
+        border.name = runtimeName;
+
+        // 隐藏 static（否则会透出来）
+        var staticBorder = country.transform.Find(staticName);
+        if (staticBorder) staticBorder.gameObject.SetActive(false);
+    }
+
+
     // 标签：放在包围盒中心外沿，避免遮挡
     void ShowLabel(GameObject country)
     {
+        if (countryLabels.ContainsKey(country))
+            return;  // 已生成，避免重复
+
         MeshFilter mf = country.GetComponent<MeshFilter>();
         if (!mf) return;
         Mesh mesh = mf.sharedMesh;
 
-        // ① 国家几何中心（局部坐标）
         Vector3 localCenter = mesh.bounds.center;
-
-        // ② 世界坐标下中心位置
         Vector3 worldCenter = country.transform.TransformPoint(localCenter);
-
-        // ③ 国家方向（地心 → 国家）
         Vector3 normal = (worldCenter - earthTransform.position).normalized;
 
-        // ④ 找到该国家表面上“离地心最远的顶点”
         float maxDist = float.MinValue;
         foreach (var v in mesh.vertices)
         {
-            // 转换到世界坐标
             Vector3 wv = country.transform.TransformPoint(v);
             float d = (wv - earthTransform.position).sqrMagnitude;
             if (d > maxDist) maxDist = d;
         }
 
-        float surfaceRadius = Mathf.Sqrt(maxDist); // 国家表面半径
+        float surfaceRadius = Mathf.Sqrt(maxDist);
         float centerRadius = (worldCenter - earthTransform.position).magnitude;
 
-        // ⑤ 自动偏移：差值 + 基础浮出
-        //    这样俄罗斯这类国家中心在内部时，也能浮到外部
-        float dynamicOffset = (surfaceRadius - centerRadius) + 0.05f;
+        float dynamicOffset = (surfaceRadius - centerRadius) + 0.005f;
+        dynamicOffset = Mathf.Max(dynamicOffset, 0.005f);
 
-        // 如果数值太小（小国家）则用默认
-        dynamicOffset = Mathf.Max(dynamicOffset, 0.05f);
-
-        // ⑥ 最终标签位置
         Vector3 labelPos = worldCenter + normal * dynamicOffset;
-
-        // ⑦ 标签旋转：面朝外
         Quaternion rotation = Quaternion.LookRotation(-normal, cameraTransform.up);
 
-        // ⑧ 生成标签
-        currentLabel = Instantiate(labelPrefab, labelPos, rotation, country.transform);
-        var tmp = currentLabel.GetComponent<TextMeshPro>();
+        GameObject newLabel = Instantiate(labelPrefab, labelPos, rotation, country.transform);
+        var tmp = newLabel.GetComponent<TextMeshPro>();
         if (tmp) tmp.text = country.name;
-    }
 
+        // ★ 保存该 label，防止丢失
+        countryLabels[country] = newLabel;
+    }
 
 
     // 恢复上一个国家
@@ -283,22 +282,27 @@ public class CountryClickController : MonoBehaviour
             if (mr && originalMat)
                 mr.sharedMaterial = originalMat;    // 恢复原来的材质
 
-            // 清除该国家的边界对象
-            var border = c.transform.Find(c.name + "_BorderRuntime");
-            if (border) Destroy(border.gameObject);
+            string staticName = c.name + "_BorderStatic";
+            string runtimeName = c.name + "_BorderRuntime";
+
+            var runtime = c.transform.Find(runtimeName);
+            if (runtime) Destroy(runtime.gameObject);
+
+            var staticBorder = c.transform.Find(staticName);
+            if (staticBorder) staticBorder.gameObject.SetActive(true);
         }
 
         highlightedCountries.Clear();
 
         // 清除标签 & 动画
         if (currentLabel) Destroy(currentLabel);
-        if (currentBorder) Destroy(currentBorder);
+        //if (currentBorder) Destroy(currentBorder);
 
-        if (currentCountry)
-        {
-            var mr = currentCountry.GetComponent<MeshRenderer>();
-            if (mr && originalMat) mr.sharedMaterial = originalMat;
-        }
+        //if (currentCountry)
+        //{
+        //    var mr = currentCountry.GetComponent<MeshRenderer>();
+        //    if (mr && originalMat) mr.sharedMaterial = originalMat;
+        //}
 
         currentCountry = null;
         originalMat = null;
@@ -407,7 +411,6 @@ public class CountryClickController : MonoBehaviour
 
 
     // ======= ↓↓↓ 完整 CountryHighlighter 的边界生成逻辑 ↓↓↓ =======
-
     GameObject GenerateBorder(GameObject go, float width, float push, Color color)
     {
         var mf = go.GetComponent<MeshFilter>();
@@ -507,6 +510,15 @@ public class CountryClickController : MonoBehaviour
         return borderObj;
     }
 
+    // 为每个国家生成一次黑色边界（Static）
+    void CreateStaticBorder(GameObject country)
+    {
+        // 使用你原来的 GenerateBorder 生成一次边界
+        GameObject border = GenerateBorder(country, 0.02f, 0.001f, Color.black);
+        border.name = country.name + "_BorderStatic";
+    }
+
+
     // CountryHighlighter 用到的辅助结构
     struct EdgeKey
     {
@@ -526,4 +538,44 @@ public class CountryClickController : MonoBehaviour
         if (map.TryGetValue(key, out var val)) { val.count++; map[key] = val; }
         else map[key] = new EdgeVal { count = 1 };
     }
+    public void HoverEnterCountry(GameObject country)
+    {
+        if (country == currentCountry) return;  // 已经选中时不改变
+
+        string staticName = country.name + "_BorderStatic";
+        string hoverName = country.name + "_BorderHover";
+
+        // 删除旧 Hover
+        var oldHover = country.transform.Find(hoverName);
+        if (oldHover) Destroy(oldHover.gameObject);
+
+        // 隐藏 static
+        var staticBorder = country.transform.Find(staticName);
+        if (staticBorder) staticBorder.gameObject.SetActive(false);
+
+        // 生成 Hover 边界（黄色 + 适中粗细）
+        GameObject border = GenerateBorder(
+            country,
+            0.02f,      // 比 default 粗，比 select 细
+            0.001f,
+            Color.red
+        );
+        border.name = hoverName;
+    }
+
+    public void HoverExitCountry(GameObject country)
+    {
+        if (country == currentCountry) return;  // 当前选中的国家不清除
+
+        string staticName = country.name + "_BorderStatic";
+        string hoverName = country.name + "_BorderHover";
+
+        var hover = country.transform.Find(hoverName);
+        if (hover) Destroy(hover.gameObject);
+
+        var staticBorder = country.transform.Find(staticName);
+        if (staticBorder) staticBorder.gameObject.SetActive(true);
+    }
+
+
 }
