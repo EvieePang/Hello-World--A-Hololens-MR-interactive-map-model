@@ -81,7 +81,7 @@ public class CountryClickController : MonoBehaviour
         foreach (Transform c in countriesParent)
         {
             CreateStaticBorder(c.gameObject);
-            ShowLabel(c.gameObject);
+            CreateLabelObject(c.gameObject);
         }
     }
 
@@ -101,6 +101,7 @@ public class CountryClickController : MonoBehaviour
         //        ClearHighlight();
         //    }
         //}
+        UpdateLabelLOD();
     }
 
     public void FocusCountryWrapper(GameObject country)
@@ -138,7 +139,7 @@ public class CountryClickController : MonoBehaviour
         }
 
         // 标签
-        ShowLabel(country);
+        //ShowLabel(country);
         //pulloutController.PullOutCountry(country);
 
         // 居中 + 摆正（国家真北对齐相机北）+ 放大
@@ -231,43 +232,43 @@ public class CountryClickController : MonoBehaviour
 
 
     // 标签：放在包围盒中心外沿，避免遮挡
-    void ShowLabel(GameObject country)
-    {
-        if (countryLabels.ContainsKey(country))
-            return;  // 已生成，避免重复
+    //void ShowLabel(GameObject country)
+    //{
+    //    if (countryLabels.ContainsKey(country))
+    //        return;  // 已生成，避免重复
 
-        MeshFilter mf = country.GetComponent<MeshFilter>();
-        if (!mf) return;
-        Mesh mesh = mf.sharedMesh;
+    //    MeshFilter mf = country.GetComponent<MeshFilter>();
+    //    if (!mf) return;
+    //    Mesh mesh = mf.sharedMesh;
 
-        Vector3 localCenter = mesh.bounds.center;
-        Vector3 worldCenter = country.transform.TransformPoint(localCenter);
-        Vector3 normal = (worldCenter - earthTransform.position).normalized;
+    //    Vector3 localCenter = mesh.bounds.center;
+    //    Vector3 worldCenter = country.transform.TransformPoint(localCenter);
+    //    Vector3 normal = (worldCenter - earthTransform.position).normalized;
 
-        float maxDist = float.MinValue;
-        foreach (var v in mesh.vertices)
-        {
-            Vector3 wv = country.transform.TransformPoint(v);
-            float d = (wv - earthTransform.position).sqrMagnitude;
-            if (d > maxDist) maxDist = d;
-        }
+    //    float maxDist = float.MinValue;
+    //    foreach (var v in mesh.vertices)
+    //    {
+    //        Vector3 wv = country.transform.TransformPoint(v);
+    //        float d = (wv - earthTransform.position).sqrMagnitude;
+    //        if (d > maxDist) maxDist = d;
+    //    }
 
-        float surfaceRadius = Mathf.Sqrt(maxDist);
-        float centerRadius = (worldCenter - earthTransform.position).magnitude;
+    //    float surfaceRadius = Mathf.Sqrt(maxDist);
+    //    float centerRadius = (worldCenter - earthTransform.position).magnitude;
 
-        float dynamicOffset = (surfaceRadius - centerRadius) + 0.005f;
-        dynamicOffset = Mathf.Max(dynamicOffset, 0.005f);
+    //    float dynamicOffset = (surfaceRadius - centerRadius) + 0.005f;
+    //    dynamicOffset = Mathf.Max(dynamicOffset, 0.005f);
 
-        Vector3 labelPos = worldCenter + normal * dynamicOffset;
-        Quaternion rotation = Quaternion.LookRotation(-normal, cameraTransform.up);
+    //    Vector3 labelPos = worldCenter + normal * dynamicOffset;
+    //    Quaternion rotation = Quaternion.LookRotation(-normal, cameraTransform.up);
 
-        GameObject newLabel = Instantiate(labelPrefab, labelPos, rotation, country.transform);
-        var tmp = newLabel.GetComponent<TextMeshPro>();
-        if (tmp) tmp.text = country.name;
+    //    GameObject newLabel = Instantiate(labelPrefab, labelPos, rotation, country.transform);
+    //    var tmp = newLabel.GetComponent<TextMeshPro>();
+    //    if (tmp) tmp.text = country.name;
 
-        // ★ 保存该 label，防止丢失
-        countryLabels[country] = newLabel;
-    }
+    //    // ★ 保存该 label，防止丢失
+    //    countryLabels[country] = newLabel;
+    //}
 
 
     // 恢复上一个国家
@@ -575,6 +576,79 @@ public class CountryClickController : MonoBehaviour
 
         var staticBorder = country.transform.Find(staticName);
         if (staticBorder) staticBorder.gameObject.SetActive(true);
+    }
+
+    void CreateLabelObject(GameObject country)
+    {
+        if (countryLabels.ContainsKey(country))
+            return;
+
+        MeshFilter mf = country.GetComponent<MeshFilter>();
+        if (!mf) return;
+        Mesh mesh = mf.sharedMesh;
+
+        Vector3 localCenter = mesh.bounds.center;
+        Vector3 worldCenter = country.transform.TransformPoint(localCenter);
+        Vector3 normal = (worldCenter - earthTransform.position).normalized;
+
+        float maxDist = float.MinValue;
+        foreach (var v in mesh.vertices)
+        {
+            Vector3 wv = country.transform.TransformPoint(v);
+            float d = (wv - earthTransform.position).sqrMagnitude;
+            if (d > maxDist) maxDist = d;
+        }
+
+        float surfaceRadius = Mathf.Sqrt(maxDist);
+        float centerRadius = (worldCenter - earthTransform.position).magnitude;
+
+        float dynamicOffset = (surfaceRadius - centerRadius) + 0.005f;
+        dynamicOffset = Mathf.Max(dynamicOffset, 0.005f);
+
+        Vector3 labelPos = worldCenter + normal * dynamicOffset;
+        Quaternion rotation = Quaternion.LookRotation(-normal, cameraTransform.up);
+
+        GameObject newLabel = Instantiate(labelPrefab, labelPos, rotation, country.transform);
+        newLabel.SetActive(false); // ★ 初始隐藏
+
+        var tmp = newLabel.GetComponent<TextMeshPro>();
+        if (tmp) tmp.text = country.name;
+
+        countryLabels[country] = newLabel;
+    }
+
+    void UpdateLabelLOD()
+    {
+        float scale = earthTransform.localScale.x;
+
+        foreach (var kvp in countryLabels)
+        {
+            GameObject country = kvp.Key;
+            GameObject label = kvp.Value;
+
+            // 计算国家面积（用 bounds）
+            float area = country.GetComponent<MeshFilter>().sharedMesh.bounds.size.sqrMagnitude;
+
+            bool shouldShow = false;
+
+            if (scale < 1.1f)
+            {
+                // ★ LOD0: 只显示特别大国家
+                shouldShow = area > 0.4f;
+            }
+            else if (scale < 1.4f)
+            {
+                // ★ LOD1: 显示中等 + 大国家
+                shouldShow = area > 0.15f;
+            }
+            else
+            {
+                // ★ LOD2: 显示全部国家
+                shouldShow = true;
+            }
+
+            label.SetActive(shouldShow);
+        }
     }
 
 
