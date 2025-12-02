@@ -98,13 +98,13 @@ public class ContextMenuSpawner : MonoBehaviour
         activeMenu.SetActive(true);
 
         // 可捏取组件
-        if (activeMenu.GetComponent<ObjectManipulator>() == null)
-            activeMenu.AddComponent<ObjectManipulator>();
-        if (activeMenu.GetComponent<BoxCollider>() == null)
-        {
-            var col = activeMenu.AddComponent<BoxCollider>();
-            col.size = new Vector3(0.2f, 0.2f, 0.02f);
-        }
+        //if (activeMenu.GetComponent<ObjectManipulator>() == null)
+        //    activeMenu.AddComponent<ObjectManipulator>();
+        //if (activeMenu.GetComponent<BoxCollider>() == null)
+        //{
+        //    var col = activeMenu.AddComponent<BoxCollider>();
+        //    col.size = new Vector3(0.2f, 0.2f, 0.02f);
+        //}
 
         // 绑定 LayerMenu
         var menu = activeMenu.GetComponentInChildren<LayerMenu>(true);

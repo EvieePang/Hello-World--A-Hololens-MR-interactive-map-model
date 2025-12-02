@@ -6,7 +6,7 @@ public class NonOccludingFollow : MonoBehaviour
 {
     [Header("Follow Settings")]
     public bool followLeftHand = false;       // whether to follow the left hand 
-    public Vector3 palmOffset = new Vector3(0f, 0.05f, 0.08f);  // up offset of the hand to set the initialized position
+    public Vector3 palmOffset = new Vector3(0f, 0.1f, 0.1f);  // up offset of the hand to set the initialized position
 
     [Header("Smoothness")]
     public float posLerp = 14f;
@@ -53,7 +53,7 @@ public class NonOccludingFollow : MonoBehaviour
         // get the position of left hand
         if (handAggregator.TryGetJoint(TrackedHandJoint.Palm, UnityEngine.XR.XRNode.LeftHand, out HandJointPose palmPose))
         {
-            Vector3 palmPos = palmPose.Position;     // + palmPose.Rotation * palmOffset;
+            Vector3 palmPos = palmPose.Position + palmOffset;
             Quaternion palmRot = palmPose.Rotation;
 
             // menu towards camera forever
@@ -90,6 +90,6 @@ public class NonOccludingFollow : MonoBehaviour
         hasPlacedInitially = false;
         followLeftHand = true;
         remainingFrames = stabilizationFrames;
-        Debug.Log("[Follow] Reset follow �� start stabilizing hand position");
+        Debug.Log("[Follow] Reset follow start stabilizing hand position");
     }
 }
