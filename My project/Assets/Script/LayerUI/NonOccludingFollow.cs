@@ -65,7 +65,7 @@ public class NonOccludingFollow : MonoBehaviour
                     toCam = cam.forward;
 
                 Quaternion faceCamRot = Quaternion.LookRotation(toCam.normalized, Vector3.up);
-                Quaternion outward = palmRot * Quaternion.Euler(0, 90f, 0);
+                Quaternion outward = palmRot * Quaternion.Euler(0, 270f, 0);
 
 
                 float t = 0.99f;
