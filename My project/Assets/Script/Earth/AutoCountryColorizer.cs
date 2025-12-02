@@ -18,10 +18,10 @@ public class AutoCountryColorizer : MonoBehaviour
             Material matInstance = renderer.material;
 
             // 获取国家颜色
-            Color color = GenerateColorFromName(country.name);
+            //Color color = GenerateColorFromName(country.name);
 
             // 设置颜色
-            matInstance.color = color;
+            matInstance.color = Color.white;
         }
 
         Debug.Log("🌈 Auto coloring completed (Pastel + Noise).");
