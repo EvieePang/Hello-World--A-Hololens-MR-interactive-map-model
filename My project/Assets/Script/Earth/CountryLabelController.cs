@@ -104,13 +104,71 @@ public class CountryLabelController : MonoBehaviour
     private GameObject CreateLabelObject(GameObject country)
     {
         MeshFilter mf = country.GetComponent<MeshFilter>();
-        if (!mf || !mf.sharedMesh)
-            return null;
+        if (!mf || !mf.sharedMesh) return null;
 
         Mesh mesh = mf.sharedMesh;
 
-        Vector3 localCenter = mesh.bounds.center;
-        Vector3 worldCenter = country.transform.TransformPoint(localCenter);
+        // --- Step 1: 找到最大连通块 ---
+        int[] triangles = mesh.triangles;
+        Vector3[] vertices = mesh.vertices;
+
+        // 每个三角形组成一个面，建立邻接表
+        Dictionary<int, List<int>> adj = new Dictionary<int, List<int>>();
+        for (int i = 0; i < vertices.Length; i++)
+            adj[i] = new List<int>();
+
+        for (int i = 0; i < triangles.Length; i += 3)
+        {
+            int a = triangles[i];
+            int b = triangles[i + 1];
+            int c = triangles[i + 2];
+
+            adj[a].Add(b); adj[a].Add(c);
+            adj[b].Add(a); adj[b].Add(c);
+            adj[c].Add(a); adj[c].Add(b);
+        }
+
+        // BFS 找连通块
+        HashSet<int> visited = new HashSet<int>();
+        List<int> bestComponent = null;
+
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            if (visited.Contains(i)) continue;
+
+            Queue<int> q = new Queue<int>();
+            List<int> comp = new List<int>();
+
+            q.Enqueue(i);
+            visited.Add(i);
+
+            while (q.Count > 0)
+            {
+                int v = q.Dequeue();
+                comp.Add(v);
+
+                foreach (var nxt in adj[v])
+                {
+                    if (!visited.Contains(nxt))
+                    {
+                        visited.Add(nxt);
+                        q.Enqueue(nxt);
+                    }
+                }
+            }
+
+            if (bestComponent == null || comp.Count > bestComponent.Count)
+                bestComponent = comp;
+        }
+
+        // --- Step 2: 用最大连通块的中心作为 label 位置 ---
+        Vector3 avg = Vector3.zero;
+        foreach (int id in bestComponent)
+            avg += country.transform.TransformPoint(vertices[id]);
+
+        avg /= bestComponent.Count;
+
+        Vector3 worldCenter = avg;
         Vector3 normal = (worldCenter - earthTransform.position).normalized;
 
         float maxDist = float.MinValue;
