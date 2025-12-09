@@ -57,7 +57,7 @@ public class RayTapCountrySelector : MonoBehaviour
                 var go = hit.collider.gameObject;
                 if (go.CompareTag("Country"))
                 {
-                    controller.FocusCountryWrapper(go);
+                    controller.FocusCountry(go);
                     return;
                 }
             }

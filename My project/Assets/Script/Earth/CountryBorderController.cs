@@ -106,7 +106,6 @@ public class CountryBorderController : MonoBehaviour
     }
 
     // ================== Border Mesh Generation ==================
-
     private GameObject GenerateBorder(GameObject go, float width, float push, Color color)
     {
         var mf = go.GetComponent<MeshFilter>();

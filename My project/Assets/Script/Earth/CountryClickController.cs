@@ -64,15 +64,42 @@ public class CountryClickController : MonoBehaviour
     // =========================================================
     // Public entry point from RayTapCountrySelector
     // =========================================================
-    public void FocusCountryWrapper(GameObject country)
+    public void FocusCountryByName(string name)
     {
-        FocusCountry(country);
+        if (string.IsNullOrWhiteSpace(name)) return;
+
+        name = name.Trim().ToLower();
+
+        Transform found = null;
+
+        foreach (Transform c in countriesParent)
+        {
+            if (c.name.ToLower() == name)
+            {
+                found = c;
+                break;
+            }
+        }
+
+        if (!found)
+        {
+            Debug.LogWarning($"[CountryClick] Country not found: {name}");
+            return;
+        }
+
+        FocusCountry(found.gameObject);
     }
+
+
+    //public void FocusCountryWrapper(GameObject country)
+    //{
+    //    FocusCountry(country);
+    //}
 
     // =========================================================
     // Focus / select a country
     // =========================================================
-    private void FocusCountry(GameObject country)
+    public void FocusCountry(GameObject country)
     {
         string name = country.name;
         selectedCountry = name;
