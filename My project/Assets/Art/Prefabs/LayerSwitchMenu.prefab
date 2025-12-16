@@ -851,7 +851,7 @@ MonoBehaviour:
   palmOffset: {x: 0, y: 0.05, z: 0.08}
   posLerp: 14
   rotLerp: 14
-  stabilizationFrames: 200
+  stabilizationFrames: 100
 --- !u!114 &4881023967167607145
 MonoBehaviour:
   m_ObjectHideFlags: 0

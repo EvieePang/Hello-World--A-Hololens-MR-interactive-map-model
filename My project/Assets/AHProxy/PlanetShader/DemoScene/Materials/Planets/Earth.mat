@@ -95,7 +95,7 @@ Material:
     - _CityLightIntensity: 0.4
     - _CityNightIntensity: 0
     - _CloudMapSpecularity: 0.01
-    - _CloudPanSpeed: -0.08
+    - _CloudPanSpeed: 0
     - _Cutoff: 0.5
     - _DetailMapSpecularity: -0.94
     - _DetailNormalMapScale: 1

@@ -388,7 +388,7 @@ Shader "AHProxy/PlanetShaderHi" {
                 float3 diffuse = directDiffuse * diffuseColor;
 /// Final Color:
                 float3 finalColor = diffuse + specular;
-                fixed4 finalRGBA = fixed4(finalColor * 1,0);
+                fixed4 finalRGBA = fixed4(finalColor,1);
                 UNITY_APPLY_FOG(i.fogCoord, finalRGBA);
                 return finalRGBA;
             }
