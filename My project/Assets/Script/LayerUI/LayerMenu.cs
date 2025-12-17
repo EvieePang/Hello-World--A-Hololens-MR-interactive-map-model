@@ -11,22 +11,22 @@ public class LayerMenu : MonoBehaviour
 
     [Header("Panels")]
     public GameObject panelRoot;    // top: Nature / Climate / Human Activity
-    public GameObject panelNature;  // First: 
-    public GameObject panelClimate; // Second precipitation / Temperature / Exit
+    public GameObject panelNature;  // First: Terrain / Forest / Exit
+    public GameObject panelClimate; // Second: precipitation / Temperature / Exit
     public GameObject panelHumanActivity; // Third: Population/ Agriculture / Exit
     public InfoPanelController infoPanel;  //  
 
 
     [Header("Layer Indices (corresponding EarthLayerSwitcher.layerMaterials)")]
     public int terrainIndex = 0;        // Nature correspond
-    public int terrain1Index = 1;       // First
-    public int terrain2Index = 2;
+    public int terrain1Index = 1;       // Terrain
+    public int terrain2Index = 2;       // Forest
     public int climateIndex = 3;        // Climate 
     public int precipitationIndex = 4;  // Second menu Precipitation
     public int temperatureIndex = 5;    // Second menu Temperature
     public int humanActivityIndex = 6;  // Human Activity
-    public int populationIndex = 7;     // Third
-    public int agricultureIndex = 8;
+    public int populationIndex = 7;     // population
+    public int GPDIndex = 8;    // GDP
 
     [Header("Legend Panels")]
     public LegendPanelController LegendPanel;  // drag your prefab instance here
@@ -54,9 +54,6 @@ public class LayerMenu : MonoBehaviour
 
 }
 
-    // =============================
-
-    // =============================
     public void SetCountryName(string name)
     {
         currentCountryName = name;
@@ -132,7 +129,7 @@ public class LayerMenu : MonoBehaviour
 
     public void OnClickAgriculture()
     {
-        if (target) target.SetLayer(agricultureIndex);
+        if (target) target.SetLayer(GPDIndex);
         OpenGDP();
     }
 

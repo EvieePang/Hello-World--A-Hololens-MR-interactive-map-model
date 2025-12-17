@@ -7,11 +7,11 @@ public class CountryVoiceController : MonoBehaviour
     private KeywordRecognizer recognizer;
 
     public CountryClickController clickController;
-    public Transform countriesParent; // 让它和你的 clickController 的一致
+    public Transform countriesParent; // make it same with clickController
 
     void Start()
     {
-        // 自动从国家 GameObject 里生成关键词列表（最重要！）
+        // automatically generate the keywords list from country GameObject
         string[] countryNames = CollectCountryNames();
 
         recognizer = new KeywordRecognizer(countryNames);
@@ -27,7 +27,7 @@ public class CountryVoiceController : MonoBehaviour
 
         foreach (Transform c in countriesParent)
         {
-            // KeywordRecognizer 区分大小写，用真实名字即可
+            // KeywordRecognizer to distinguish upper or mixed case
             names.Add(c.name);
         }
         return names.ToArray();
@@ -39,7 +39,7 @@ public class CountryVoiceController : MonoBehaviour
 
         Debug.Log("[Voice] Recognized: " + spoken);
 
-        // 直接把识别到的国家名字传进你的函数
+        // directly return the country name recongnized to the function
         clickController.FocusCountryByName(spoken);
     }
 }
