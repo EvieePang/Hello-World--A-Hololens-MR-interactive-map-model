@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Handles static, hover, and selected borders for country meshes.
-/// </summary>
+// Generates runtime border meshes dynamically based on mesh edges for visual highlighting
 public class CountryBorderController : MonoBehaviour
 {
     [Header("Country Root")]
@@ -18,11 +16,10 @@ public class CountryBorderController : MonoBehaviour
     public Color hoverColor = Color.yellow;
     public Color selectedColor = Color.red;
 
-    /// <summary>
-    /// Create static black borders for all countries once at startup.
-    /// </summary>
+    // Generates a thin static border for every country at initialization
     public void CreateStaticBorders()
     {
+        // Iterate through all country meshes and generate static borders
         foreach (Transform c in countriesParent)
         {
             GameObject border = GenerateBorder(c.gameObject, staticBorderWidth, normalPush, staticColor);
@@ -30,16 +27,14 @@ public class CountryBorderController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Show red "selected" border and hide static/hover borders.
-    /// </summary>
+    // Replaces existing borders with a highlighted border for the selected country
     public void ShowSelectedBorder(GameObject country)
     {
         string staticName = country.name + "_BorderStatic";
         string hoverName = country.name + "_BorderHover";
         string runtimeName = country.name + "_BorderRuntime";
 
-        // Remove previous runtime border
+        // Remove any previously generated selected border
         var oldRuntime = country.transform.Find(runtimeName);
         if (oldRuntime) Destroy(oldRuntime.gameObject);
 
@@ -47,16 +42,14 @@ public class CountryBorderController : MonoBehaviour
         GameObject border = GenerateBorder(country, selectedBorderWidth, normalPush, selectedColor);
         border.name = runtimeName;
 
-        // Hide static & hover borders
+        // Temporarily hide static and hover borders
         var staticBorder = country.transform.Find(staticName);
         var hoverBorder = country.transform.Find(hoverName);
         if (staticBorder) staticBorder.gameObject.SetActive(false);
         if (hoverBorder) hoverBorder.gameObject.SetActive(false);
     }
 
-    /// <summary>
-    /// Remove red selected border and re-enable static border.
-    /// </summary>
+    // Clears the selected border and restores the static border
     public void ClearSelectedBorder(GameObject country)
     {
         string staticName = country.name + "_BorderStatic";
@@ -69,9 +62,7 @@ public class CountryBorderController : MonoBehaviour
         if (staticBorder) staticBorder.gameObject.SetActive(true);
     }
 
-    /// <summary>
-    /// Show yellow hover border and hide static border.
-    /// </summary>
+    // Displays a hover border while the pointer is over a country
     public void ShowHoverBorder(GameObject country)
     {
         string staticName = country.name + "_BorderStatic";
@@ -90,9 +81,7 @@ public class CountryBorderController : MonoBehaviour
         border.name = hoverName;
     }
 
-    /// <summary>
-    /// Remove yellow hover border and restore static border.
-    /// </summary>
+    // Removes the hover border and restores the static border
     public void ClearHoverBorder(GameObject country)
     {
         string staticName = country.name + "_BorderStatic";
@@ -105,7 +94,7 @@ public class CountryBorderController : MonoBehaviour
         if (staticBorder) staticBorder.gameObject.SetActive(true);
     }
 
-    // ================== Border Mesh Generation ==================
+    // Dynamically generates a border mesh by extracting boundary edges from the country mesh
     private GameObject GenerateBorder(GameObject go, float width, float push, Color color)
     {
         var mf = go.GetComponent<MeshFilter>();
@@ -120,6 +109,7 @@ public class CountryBorderController : MonoBehaviour
             norms = mesh.normals;
         }
 
+        // Build an edge map to count how many triangles share each edge
         var edgeMap = new Dictionary<EdgeKey, EdgeVal>(2048);
         for (int t = 0; t < tris.Length; t += 3)
         {
@@ -128,6 +118,7 @@ public class CountryBorderController : MonoBehaviour
             AddEdge(edgeMap, tris[t + 2], tris[t]);
         }
 
+        // Boundary edges are those referenced by only one triangle
         var boundaryEdges = new List<System.Tuple<int, int>>();
         foreach (var kv in edgeMap)
             if (kv.Value.count == 1)
@@ -153,6 +144,7 @@ public class CountryBorderController : MonoBehaviour
             var tangent = Vector3.Cross(nAvg, edgeDir).normalized;
             var pushVec = nAvg * push;
 
+            // Expand each boundary edge into a thin quad to create visible border geometry
             var v0 = va + tangent * half + pushVec;
             var v1 = vb + tangent * half + pushVec;
             var v2 = vb - tangent * half + pushVec;
@@ -184,6 +176,7 @@ public class CountryBorderController : MonoBehaviour
         var cmr = borderObj.AddComponent<MeshRenderer>();
         cmf.sharedMesh = borderMesh;
 
+        // Configure an unlit material so borders are always clearly visible
         Shader sh = Shader.Find("Unlit/Color") ??
                     Shader.Find("Universal Render Pipeline/Unlit") ??
                     Shader.Find("Legacy Shaders/Transparent/Diffuse");
@@ -202,7 +195,7 @@ public class CountryBorderController : MonoBehaviour
         return borderObj;
     }
 
-    // ----- Edge structures -----
+    // Represents an undirected mesh edge
     private struct EdgeKey
     {
         public int a, b;
@@ -217,6 +210,7 @@ public class CountryBorderController : MonoBehaviour
 
     private struct EdgeVal { public int count; }
 
+    // Adds an edge to the map or increments its usage count
     private static void AddEdge(Dictionary<EdgeKey, EdgeVal> map, int i, int j)
     {
         var key = new EdgeKey(i, j);

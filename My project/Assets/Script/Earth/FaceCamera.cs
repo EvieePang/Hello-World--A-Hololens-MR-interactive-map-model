@@ -1,6 +1,7 @@
 using UnityEngine;
 public class FaceCamera : MonoBehaviour
 {
+    // Rotates label to always face the main camera
     void LateUpdate()
     {
         if (Camera.main)

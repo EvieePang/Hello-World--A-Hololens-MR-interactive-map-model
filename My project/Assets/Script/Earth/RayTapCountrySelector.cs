@@ -2,25 +2,28 @@
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
+// Handles ray-based tap and hover interaction for country selection using XR ray interactors.
 public class RayTapCountrySelector : MonoBehaviour
 {
     public CountryClickController controller;
-
     private XRRayInteractor[] rays;
-    private float clickThreshold = 0.3f;   // 小于这个时间算“点击”
+    private float clickThreshold = 0.3f;  
     private float pressStartTime = -1f;
     private GameObject currentHover = null;
     private GameObject lastHover = null;
 
 
+    // Initialize and register all XR ray interactors for select events
     void Start()
     {
+        // Find all XRRayInteractors in the scene
         rays = FindObjectsOfType<XRRayInteractor>(true);
         if (rays.Length == 0)
         {
             Debug.LogError("[RayTapCountrySelector] No XRRayInteractors found!");
         }
 
+        // Subscribe to select enter and exit events for each ray
         foreach (var ray in rays)
         {
             ray.selectEntered.AddListener(OnSelectEntered);
@@ -28,30 +31,34 @@ public class RayTapCountrySelector : MonoBehaviour
         }
     }
 
+    // Per-frame update to detect hover changes
     void Update()
     {
         DetectHover();
     }
 
 
+    // Called when a select action begins; records press start time
     private void OnSelectEntered(SelectEnterEventArgs args)
     {
         pressStartTime = Time.time;
     }
 
+    // Called when a select action ends; triggers a click if press duration is short
     private void OnSelectExited(SelectExitEventArgs args)
     {
-        // 判断是否是一次“轻触点击”
         if (Time.time - pressStartTime < clickThreshold)
         {
             TryClickCountry();
         }
     }
 
+    // Attempts to select a country under any active ray and trigger focus logic
     private void TryClickCountry()
     {
         foreach (var ray in rays)
         {
+            // Check current raycast hit and verify the object is a country
             if (ray.TryGetCurrent3DRaycastHit(out RaycastHit hit))
             {
                 var go = hit.collider.gameObject;
@@ -64,11 +71,13 @@ public class RayTapCountrySelector : MonoBehaviour
         }
     }
 
+    // Detects hover enter and exit events for countries using raycasts
     private void DetectHover()
     {
+        // Reset current hover before performing ray checks
         currentHover = null;
 
-        // 找出射线打到的国家
+        // Iterate through rays to find the first country being pointed at
         foreach (var ray in rays)
         {
             if (ray.TryGetCurrent3DRaycastHit(out RaycastHit hit))
@@ -82,7 +91,7 @@ public class RayTapCountrySelector : MonoBehaviour
             }
         }
 
-        // 没指到国家 → 清除 hover
+        // Handle hover exit when no country is currently hovered
         if (currentHover == null)
         {
             if (lastHover != null)
@@ -93,7 +102,7 @@ public class RayTapCountrySelector : MonoBehaviour
             return;
         }
 
-        // 当前 hover 与上一次不同 → 更新 hover 状态
+        // Handle hover transition between different countries
         if (currentHover != lastHover)
         {
             if (lastHover != null)

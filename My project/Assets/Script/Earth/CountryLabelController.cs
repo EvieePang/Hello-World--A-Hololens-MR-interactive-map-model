@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 
+// Controls creation, placement, orientation, and level-of-detail (LOD) behavior of country name labels.
 /// <summary>
 /// Manages country name labels: creation + LOD (fade in/out with earth scale).
 /// </summary>
@@ -12,19 +13,11 @@ public class CountryLabelController : MonoBehaviour
     public Transform earthTransform;
     public Transform cameraTransform;
     public GameObject labelPrefab;
-
-    // All labels for each country
     private Dictionary<GameObject, GameObject> countryLabels = new Dictionary<GameObject, GameObject>();
-
-    // Countries whose labels should always be visible (e.g., selected or hovered)
     private HashSet<GameObject> forcedVisible = new HashSet<GameObject>();
-
     public IReadOnlyDictionary<GameObject, GameObject> Labels => countryLabels;
 
-    /// <summary>
-    /// Create labels for all countries once, and keep them initially hidden.
-    /// Call this from CountryClickController.Start().
-    /// </summary>
+    // Create labels for all countries once, and keep them initially hidden.
     public void InitLabels()
     {
         countryLabels.Clear();
@@ -37,9 +30,7 @@ public class CountryLabelController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Force a country's label to always be visible (e.g., when selected or hovered).
-    /// </summary>
+    // Force a country's label to always be visible 
     public void SetForcedVisible(GameObject country, bool forced)
     {
         if (forced)
@@ -48,10 +39,7 @@ public class CountryLabelController : MonoBehaviour
             forcedVisible.Remove(country);
     }
 
-    /// <summary>
-    /// Update label visibility and alpha based on earth scale and country area.
-    /// Should be called every frame from CountryClickController.Update().
-    /// </summary>
+    // Update label visibility and alpha based on earth scale and country area.
     public void UpdateLabelLOD()
     {
         float scale = earthTransform.localScale.x;
@@ -89,9 +77,7 @@ public class CountryLabelController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Get a country's label GameObject.
-    /// </summary>
+    // Get a country's label GameObject.
     public GameObject GetLabel(GameObject country)
     {
         if (countryLabels.TryGetValue(country, out var label))
@@ -99,8 +85,7 @@ public class CountryLabelController : MonoBehaviour
         return null;
     }
 
-    // ----------- Internal: create a single label for a given country -----------
-
+    // Internal helper methods
     private GameObject CreateLabelObject(GameObject country)
     {
         MeshFilter mf = country.GetComponent<MeshFilter>();
@@ -108,11 +93,11 @@ public class CountryLabelController : MonoBehaviour
 
         Mesh mesh = mf.sharedMesh;
 
-        // --- Step 1: 找到最大连通块 ---
+        // --- Step 1: Find the largest connected component of the country mesh ---
         int[] triangles = mesh.triangles;
         Vector3[] vertices = mesh.vertices;
 
-        // 每个三角形组成一个面，建立邻接表
+        // Build a vertex adjacency list from triangle connectivity
         Dictionary<int, List<int>> adj = new Dictionary<int, List<int>>();
         for (int i = 0; i < vertices.Length; i++)
             adj[i] = new List<int>();
@@ -128,7 +113,7 @@ public class CountryLabelController : MonoBehaviour
             adj[c].Add(a); adj[c].Add(b);
         }
 
-        // BFS 找连通块
+        // Use breadth-first search (BFS) to identify connected components
         HashSet<int> visited = new HashSet<int>();
         List<int> bestComponent = null;
 
@@ -161,7 +146,7 @@ public class CountryLabelController : MonoBehaviour
                 bestComponent = comp;
         }
 
-        // --- Step 2: 用最大连通块的中心作为 label 位置 ---
+        // --- Step 2: Use the centroid of the largest component as the label anchor ---
         Vector3 avg = Vector3.zero;
         foreach (int id in bestComponent)
             avg += country.transform.TransformPoint(vertices[id]);
@@ -171,6 +156,7 @@ public class CountryLabelController : MonoBehaviour
         Vector3 worldCenter = avg;
         Vector3 normal = (worldCenter - earthTransform.position).normalized;
 
+        // Compute the maximum surface radius to ensure the label is placed outside the globe
         float maxDist = float.MinValue;
         foreach (var v in mesh.vertices)
         {
@@ -187,6 +173,7 @@ public class CountryLabelController : MonoBehaviour
         Vector3 labelPos = worldCenter + normal * offset;
         Quaternion rot = Quaternion.LookRotation(-normal, cameraTransform.up);
 
+        // Instantiate the label, orient it toward the camera, and parent it to the country
         GameObject label = Instantiate(labelPrefab, labelPos, rot, country.transform);
         var tmp = label.GetComponent<TextMeshPro>();
         if (tmp) tmp.text = country.name;

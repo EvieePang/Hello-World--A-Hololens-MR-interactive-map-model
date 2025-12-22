@@ -3,31 +3,35 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-/// <summary>
-/// High-level controller:
-/// - Click: focus country (zoom + rotate), red border, audio, label pinned
-/// - Hover: yellow border + label (via LabelController + BorderController)
-/// </summary>
+// Central controller handling country selection, highlighting, camera motion, labels, and audio feedback.
 public class CountryClickController : MonoBehaviour
 {
     [Header("Country Root")]
+    // Parent transform containing all country GameObjects
     public Transform countriesParent;
 
     [Header("Scene References")]
+    // Transform of the Earth model used for rotation and scaling
     public Transform earthTransform;
+    // Main camera transform used to align the selected country to the view
     public Transform cameraTransform;
 
     [Header("Audio")]
+    // Audio source for playing country-specific sound clips
     public AudioSource audioSource;
 
     [Header("Sub Controllers")]
+    // Controller responsible for generating and displaying country borders
     public CountryBorderController borderController;
+    // Controller responsible for creating and managing country labels
     public CountryLabelController labelController;
 
     [Header("Highlight Settings")]
+    // Alpha value applied to the selected country's surface material
     [Range(0, 1)] public float transparentAlpha = 1.0f;
 
     [Header("Camera Movement")]
+    // Speed factor controlling the rotation and zoom animation
     public float rotationSpeed = 1.5f;
 
     [HideInInspector] public bool isAnyCountryActive = false;
@@ -38,14 +42,17 @@ public class CountryClickController : MonoBehaviour
     private Vector3 baseScale;
     private List<GameObject> highlightedCountries = new List<GameObject>();
 
+    // Name of the currently selected country (global reference)
     public static string selectedCountry;
 
     // -------- Utility --------
+    // Utility check for handling China and Taiwan as a merged selection
     private bool IsChinaOrTaiwan(string name)
     {
         return name == "China" || name == "Taiwan";
     }
 
+    // Initialize base scale, static borders, and country labels
     private void Start()
     {
         baseScale = earthTransform.localScale;
@@ -55,21 +62,21 @@ public class CountryClickController : MonoBehaviour
         labelController.InitLabels();
     }
 
+    // Per-frame update: refresh label level-of-detail
     private void Update()
     {
         // Update label LOD every frame
         labelController.UpdateLabelLOD();
     }
 
-    // =========================================================
-    // Public entry point from RayTapCountrySelector
-    // =========================================================
+    // Finds a country by name and triggers the focus logic
     public void FocusCountryByName(string name)
     {
         if (string.IsNullOrWhiteSpace(name)) return;
 
         name = name.Trim().ToLower();
 
+        // Search for a matching country GameObject by name
         Transform found = null;
 
         foreach (Transform c in countriesParent)
@@ -96,9 +103,8 @@ public class CountryClickController : MonoBehaviour
     //    FocusCountry(country);
     //}
 
-    // =========================================================
     // Focus / select a country
-    // =========================================================
+    // Core method that handles country selection and triggers all visual and audio responses
     public void FocusCountry(GameObject country)
     {
         string name = country.name;
@@ -145,6 +151,7 @@ public class CountryClickController : MonoBehaviour
         isAnyCountryActive = true;
     }
 
+    // Loads and plays the audio clip associated with the selected country
     private void PlayCountryAudio(GameObject country)
     {
         if (!audioSource) return;
@@ -164,9 +171,7 @@ public class CountryClickController : MonoBehaviour
         }
     }
 
-    // =========================================================
-    // Highlight country: transparent fill + red border
-    // =========================================================
+    // Applies visual highlighting: semi-transparent surface and selected border
     private void HighlightCountry(GameObject country)
     {
         var mr = country.GetComponent<MeshRenderer>();
@@ -194,9 +199,7 @@ public class CountryClickController : MonoBehaviour
             highlightedCountries.Add(country);
     }
 
-    // =========================================================
-    // Clear selection highlight
-    // =========================================================
+    // Clears all active highlights and restores original materials and borders
     public void ClearHighlight()
     {
         foreach (var c in highlightedCountries)
@@ -220,9 +223,7 @@ public class CountryClickController : MonoBehaviour
         currentAnim = null;
     }
 
-    // =========================================================
-    // Camera rotate + zoom
-    // =========================================================
+    // Smoothly rotates and scales the Earth to bring the selected country into view
     private IEnumerator RotateAndZoom(Vector3 targetDir, Vector3 camDir, GameObject country)
     {
         Quaternion alignRot = Quaternion.FromToRotation(targetDir, camDir) * earthTransform.rotation;
@@ -265,6 +266,7 @@ public class CountryClickController : MonoBehaviour
         }
     }
 
+    // Estimates the angular size of a country on the globe to determine zoom level
     private float ComputeCountryAngularRadiusDeg(GameObject country)
     {
         var mf = country.GetComponent<MeshFilter>();
@@ -288,9 +290,7 @@ public class CountryClickController : MonoBehaviour
         return maxAngle * Mathf.Rad2Deg;
     }
 
-    // =========================================================
-    // Hover API (called from RayTapCountrySelector)
-    // =========================================================
+    // Called when a country is hovered: show hover border and force label visibility
     public void HoverEnterCountry(GameObject country)
     {
         if (country == currentCountry) return;
@@ -301,6 +301,7 @@ public class CountryClickController : MonoBehaviour
         labelController.SetForcedVisible(country, true);
     }
 
+    // Called when hover ends: remove hover border and restore label LOD behavior
     public void HoverExitCountry(GameObject country)
     {
         if (country == currentCountry) return;
@@ -311,9 +312,10 @@ public class CountryClickController : MonoBehaviour
         labelController.SetForcedVisible(country, false);
     }
 
+    // Dynamically adjusts the transparency of the currently selected country
     public void SetCurrentCountryAlpha(float alpha)
     {
-        // 没有当前国家就什么也不做
+        // Do nothing if no country is currently selected
         if (!currentCountry) return;
 
         var mr = currentCountry.GetComponent<MeshRenderer>();
