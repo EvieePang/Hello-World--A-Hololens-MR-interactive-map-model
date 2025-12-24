@@ -90,6 +90,5 @@ public class NonOccludingFollow : MonoBehaviour
         hasPlacedInitially = false;
         followLeftHand = true;
         remainingFrames = stabilizationFrames;
-        Debug.Log("[Follow] Reset follow start stabilizing hand position");
     }
 }

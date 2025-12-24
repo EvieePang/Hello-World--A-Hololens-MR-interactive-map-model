@@ -54,7 +54,7 @@ public class CountryLabelController : MonoBehaviour
             float area = country.GetComponent<MeshFilter>().sharedMesh.bounds.size.sqrMagnitude;
             area = Mathf.Max(area, 0.0001f);
 
-            // Larger area → smaller threshold → appears earlier
+            // Larger area to smaller threshold to appears earlier
             float K = 0.12f;
             float threshold = K / area;
             float factor = Mathf.Clamp01(scale / threshold);
@@ -93,7 +93,7 @@ public class CountryLabelController : MonoBehaviour
 
         Mesh mesh = mf.sharedMesh;
 
-        // --- Step 1: Find the largest connected component of the country mesh ---
+        // Find the largest connected component of the country mesh
         int[] triangles = mesh.triangles;
         Vector3[] vertices = mesh.vertices;
 
@@ -146,7 +146,7 @@ public class CountryLabelController : MonoBehaviour
                 bestComponent = comp;
         }
 
-        // --- Step 2: Use the centroid of the largest component as the label anchor ---
+        //  Use the centroid of the largest component as the label anchor ---
         Vector3 avg = Vector3.zero;
         foreach (int id in bestComponent)
             avg += country.transform.TransformPoint(vertices[id]);

@@ -37,7 +37,6 @@ public class CountryVoiceController : MonoBehaviour
     {
         string spoken = args.text;
 
-        Debug.Log("[Voice] Recognized: " + spoken);
 
         // directly return the country name recongnized to the function
         clickController.FocusCountryByName(spoken);

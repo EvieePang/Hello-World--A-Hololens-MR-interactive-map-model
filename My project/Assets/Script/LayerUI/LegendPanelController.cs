@@ -6,9 +6,9 @@ using System.Collections.Generic;
 [System.Serializable]
 public class LegendInfoEntry
 {
-    public string layer;    // 比如 "climate", "population"
-    public string text;     // 显示在 LegendTypeText 里的文字
-    public string image;    // 对应 Resources/Legends 下的图片名
+    public string layer;    // topic name
+    public string text;     // the description of this layer's legend
+    public string image;    // the filename of legend image
 }
 
 [System.Serializable]
@@ -20,8 +20,8 @@ public class LegendInfoCollection
 public class LegendPanelController : MonoBehaviour
 {
     [Header("UI Refs")]
-    public TMP_Text headerText;       // 图层标题
-    public TMP_Text LegendTypeText;   // 描述文字
+    public TMP_Text headerText;       // title(topic name)
+    public TMP_Text LegendTypeText;   // description
 
     [Header("Scroll Content (Image Loader)")]
     public Image contentImage;
@@ -32,38 +32,21 @@ public class LegendPanelController : MonoBehaviour
 
     private void Awake()
     {
-        // 读取 legend json
+        // load legend json
         TextAsset jsonFile = Resources.Load<TextAsset>("legend_colorbar_info");
-        if (jsonFile == null)
-        {
-            Debug.LogError("[LegendPanelController] Missing Resources/legend_colorbar_info.json");
-            return;
-        }
 
         legendInfo = JsonUtility.FromJson<LegendInfoCollection>(jsonFile.text);
-        if (legendInfo == null || legendInfo.layers == null)
-        {
-            Debug.LogError("[LegendPanelController] Failed to parse legend_colorbar_info.json");
-        }
-        else
-        {
-            Debug.Log($"[LegendPanelController] Loaded {legendInfo.layers.Count} legend entries.");
-        }
     }
 
-    /// <summary>
-    /// 根据 layerType 显示 legend 面板
-    /// </summary>
+    // show legend panel
     public void Show(string layerType)
     {
         Awake();
-        Debug.Log($"[LegendPanel] Show legend for layer = {layerType}");
 
-        // 设置标题
         if (headerText != null)
             headerText.text = $"{UppercaseFirst(layerType)} Legend";
 
-        // 查询 JSON 数据
+        // match with json data
         LegendInfoEntry entry = FindLegendEntry(layerType);
         if (entry == null)
         {
@@ -78,9 +61,7 @@ public class LegendPanelController : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    /// <summary>
-    /// 查找 legend 条目
-    /// </summary>
+    // find layer's legend info 
     private LegendInfoEntry FindLegendEntry(string layerType)
     {
         if (legendInfo == null || legendInfo.layers == null)
@@ -93,66 +74,31 @@ public class LegendPanelController : MonoBehaviour
         return null;
     }
 
-    /// <summary>
-    /// 从 Resources/Legends 加载对应图层图像
-    /// </summary>
+
+    /// load corresponding legend image from Resources/Legends 
     private void LoadLegendImage(string imageName)
     {
-        if (contentImage == null)
-        {
-            Debug.LogError("[LegendPanel] legendImageUI not assigned.");
-            return;
-        }
 
         Sprite sprite = Resources.Load<Sprite>($"Legends/{imageName}");
-        if (sprite == null)
-        {
-            Debug.LogError($"[LegendPanel] Missing legend sprite: Resources/Legends/{imageName}.png");
-            return;
-        }
 
         float originalWidth = sprite.rect.width;
         float originalHeight = sprite.rect.height;
 
-        // 计算缩放比例
+        // calculate scale factor
         float scale = desiredWidth / originalWidth;
 
         float newWidth = desiredWidth;
         float newHeight = originalHeight * scale;
 
-        // 应用缩放
+        // apply scale factor
         contentImage.rectTransform.sizeDelta = new Vector2(newWidth, newHeight);
-
-        Debug.Log($"[LegendPanel] Force resize to {newWidth} x {newHeight} (scale = {scale})");
-
-        //FitImageToWidth(sprite);
 
         contentImage.sprite = sprite;
 
         
     }
 
-    //private void FitImageToWidth(Sprite sprite)
-    //{
-    //    float originalWidth = sprite.rect.width;
-    //    float originalHeight = sprite.rect.height;
-
-    //    // 计算缩放比例
-    //    float scale = desiredWidth / originalWidth;
-
-    //    float newWidth = desiredWidth;
-    //    float newHeight = originalHeight * scale;
-
-    //    // 应用缩放
-    //    contentImage.rectTransform.sizeDelta = new Vector2(newWidth, newHeight);
-
-    //    Debug.Log($"[LegendPanel] Force resize to {newWidth} x {newHeight} (scale = {scale})");
-    //}
-
-
-    /// <summary>
-    /// 隐藏
-    /// </summary>
+   
     public void Hide()
     {
         gameObject.SetActive(false);

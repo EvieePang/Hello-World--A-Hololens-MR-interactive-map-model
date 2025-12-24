@@ -36,7 +36,5 @@ public class GetChildNamesToJson : MonoBehaviour
         }
 
         File.WriteAllText(path, json);
-
-        Debug.Log("Country names have been saved to: " + path);
     }
 }

@@ -35,21 +35,12 @@ public class InfoPanelController : MonoBehaviour
 
     private void Awake()
     {
-        // Load JSON file from Resources
-        TextAsset jsonFile = Resources.Load<TextAsset>("country_info_all"); // Assets/Resources/country_info.json
+        // Load all country data from json file in Resources
+        TextAsset jsonFile = Resources.Load<TextAsset>("country_info_all"); 
         if (jsonFile != null)
         {
             dataCollection = JsonUtility.FromJson<CountryDataCollection>(jsonFile.text);
-            UnityEngine.Debug.Log("[InfoPanelController] JSON loaded successfully.");
         }
-        else
-        {
-            UnityEngine.Debug.LogError("[InfoPanelController] Failed to load country_info.json from Resources.");
-        }
-
-        // Optional: hide panel by default
-        // if (panelRoot)
-        //     panelRoot.SetActive(false);
     }
 
     public void SetCountry(string name)
@@ -75,6 +66,7 @@ public class InfoPanelController : MonoBehaviour
             panelRoot.SetActive(false);
     }
 
+    // load description of every country in all topics
     private string GenerateInfo(string category = "climate")
     {
         if (dataCollection == null)

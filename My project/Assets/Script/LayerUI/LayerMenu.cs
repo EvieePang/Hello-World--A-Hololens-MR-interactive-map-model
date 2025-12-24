@@ -18,7 +18,7 @@ public class LayerMenu : MonoBehaviour
 
 
     [Header("Layer Indices (corresponding EarthLayerSwitcher.layerMaterials)")]
-    public int terrainIndex = 0;        // Nature correspond
+    public int terrainIndex = 0;        // Nature 
     public int terrain1Index = 1;       // Terrain
     public int terrain2Index = 2;       // Forest
     public int climateIndex = 3;        // Climate 
@@ -29,7 +29,7 @@ public class LayerMenu : MonoBehaviour
     public int GPDIndex = 8;    // GDP
 
     [Header("Legend Panels")]
-    public LegendPanelController LegendPanel;  // drag your prefab instance here
+    public LegendPanelController LegendPanel; 
     public ColorbarPanelController colorbarPanel;
 
 
@@ -46,10 +46,7 @@ public class LayerMenu : MonoBehaviour
         if (!countryController)
         {
             countryController = FindObjectOfType<CountryClickController>();
-            if (countryController)
-                Debug.Log($"[LayerMenu] Auto-bound CountryClickController: {countryController.name}");
-            else
-                Debug.LogWarning("[LayerMenu] CountryClickController not found in scene!");
+           
         }
 
 }
@@ -219,10 +216,6 @@ public class LayerMenu : MonoBehaviour
         if (LegendPanel != null)
         {
             LegendPanel.Show("climate");  
-        }
-        else
-        {
-            Debug.LogWarning("[LayerMenu] LegendPanel is not assigned!");
         }
     }
 

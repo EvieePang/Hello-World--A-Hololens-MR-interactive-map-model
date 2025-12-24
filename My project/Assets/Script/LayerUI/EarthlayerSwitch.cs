@@ -11,7 +11,6 @@ public class EarthLayerSwitcher : MonoBehaviour
 
     public void SetLayer(int index)
     {
-        Debug.Log($"[EarthLayerSwitcher] try to change to {index}");
         if (earthRenderer == null || layerMaterials == null || layerMaterials.Length == 0) return;
         index = Mathf.Clamp(index, 0, layerMaterials.Length - 1);
         if (current == index) return;

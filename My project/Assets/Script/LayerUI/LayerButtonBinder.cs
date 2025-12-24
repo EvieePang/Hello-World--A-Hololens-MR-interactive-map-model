@@ -34,9 +34,5 @@ public class LayerButtonBinderPressable : MonoBehaviour
                 if (menu) menu.OnClickSetLayer(layerIndex);
             });
         }
-        else
-        {
-            Debug.LogWarning($"[{nameof(LayerButtonBinderPressable)}] cann't find PressableButton¡£");
-        }
     }
 }

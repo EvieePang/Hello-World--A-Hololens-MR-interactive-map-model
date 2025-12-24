@@ -23,7 +23,6 @@ public class AutoCountryColorizer : MonoBehaviour
             matInstance.color = Color.white;
         }
 
-        Debug.Log("Auto coloring completed (Pastel + Noise).");
     }
 
     // Generates a deterministic color based on the country name (not used in current logic)

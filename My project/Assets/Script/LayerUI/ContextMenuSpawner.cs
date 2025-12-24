@@ -27,10 +27,7 @@ public class ContextMenuSpawner : MonoBehaviour
         if (countryController == null)
         {
             countryController = FindObjectOfType<CountryClickController>();
-            if (countryController)
-                Debug.Log($"[Init] Auto-assigned CountryClickController: {countryController.name}");
-            else
-                Debug.LogWarning("[Init] No CountryClickController found in scene!");
+         
         }
     }
 
@@ -60,18 +57,16 @@ public class ContextMenuSpawner : MonoBehaviour
         bool anyActive = countryController.isAnyCountryActive;
         bool leftHandVisible = IsLeftHandVisible();
 
-        // Step 1️: select country → wait for left hand and record current hand state to avoid immediately trigger on
+        // select country ,then wait for left hand and record current hand state to avoid immediately trigger on
         if (anyActive && activeMenu == null && !waitingForHand)
         {
             wasLeftHandVisible = leftHandVisible;     // record current state
             waitingForHand = true;
-            Debug.Log($"[State] Country activated → Start waiting for left hand. (initial wasLeftHandVisible={wasLeftHandVisible})");
         }
 
-        // Step 2️: detect the first show up of left hand (false → true)
+        // detect the first show up of left hand 
         if (waitingForHand && leftHandVisible && !wasLeftHandVisible && activeMenu == null)
         {
-            Debug.Log("[Trigger] Left hand first detected → ShowMenu()");
             ShowMenu();
             waitingForHand = false;
         }
@@ -79,21 +74,9 @@ public class ContextMenuSpawner : MonoBehaviour
         wasLeftHandVisible = leftHandVisible;
     }
 
-    // Menu show up logic
+    // Menu show up 
     private void ShowMenu()
     {
-        if (!menuPrefab)
-        {
-            Debug.LogWarning("[ContextMenuSpawner] No menuPrefab assigned!");
-            return;
-        }
-
-        if (activeMenu != null)
-        {
-            Debug.LogWarning("[ContextMenuSpawner] Menu already exists, skipping spawn.");
-            return;
-        }
-
         activeMenu = Instantiate(menuPrefab, uiRoot ? uiRoot : null);
         activeMenu.SetActive(true);
 
@@ -126,7 +109,6 @@ public class ContextMenuSpawner : MonoBehaviour
         if (follow)
             follow.ResetFollowToHand();
 
-        Debug.Log("[ShowMenu] Menu placed near left hand and locked.");
     }
 
     // Menu destroy logic
@@ -144,6 +126,5 @@ public class ContextMenuSpawner : MonoBehaviour
             follow = null;
         }
 
-        Debug.Log("[ContextMenuSpawner] Full reset completed.");
     }
 }

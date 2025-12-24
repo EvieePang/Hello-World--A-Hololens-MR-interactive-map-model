@@ -18,10 +18,7 @@ public class RayTapCountrySelector : MonoBehaviour
     {
         // Find all XRRayInteractors in the scene
         rays = FindObjectsOfType<XRRayInteractor>(true);
-        if (rays.Length == 0)
-        {
-            Debug.LogError("[RayTapCountrySelector] No XRRayInteractors found!");
-        }
+       
 
         // Subscribe to select enter and exit events for each ray
         foreach (var ray in rays)

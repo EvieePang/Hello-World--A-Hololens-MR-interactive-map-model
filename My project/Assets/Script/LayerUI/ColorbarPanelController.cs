@@ -20,13 +20,13 @@ public class LayerInfoCollection
 public class ColorbarPanelController : MonoBehaviour
 {
     [Header("UI Refs")]
-    public TMP_Text headerText;        // 标题：Colorbar of xx
-    public TMP_Text highValueText;     // 高值
-    public TMP_Text lowValueText;      // 低值
-    public TMP_Text colorbarInfoText;  // 描述文字
+    public TMP_Text headerText;        // title
+    public TMP_Text highValueText;     // high value and low value
+    public TMP_Text lowValueText;     
+    public TMP_Text colorbarInfoText;  // description of the colorbar
 
     [Header("Renderer for colorbar material")]
-    public Renderer colorbarRenderer;  // 颜色条材质显示
+    public Renderer colorbarRenderer;  
 
     private LayerInfoCollection layerData;
     private bool jsonLoaded = false;
@@ -43,22 +43,13 @@ public class ColorbarPanelController : MonoBehaviour
 
         TextAsset jsonFile = Resources.Load<TextAsset>("colorbar_info");
 
-        if (jsonFile == null)
-        {
-            Debug.LogError("[ColorbarPanel] Failed to load colorbar_info.json");
-            return;
-        }
-
         layerData = JsonUtility.FromJson<LayerInfoCollection>(jsonFile.text);
         jsonLoaded = true;
 
-        Debug.Log($"[ColorbarPanel] Loaded {layerData.layers.Count} layers from JSON");
     }
 
     public void Show(string layerType)
     {
-        Debug.Log($"[ColorbarPanel] Show {layerType}");
-
         gameObject.SetActive(true);
 
         if (layerType.ToLower() == "humanactivity")
@@ -74,14 +65,14 @@ public class ColorbarPanelController : MonoBehaviour
             if (lowValueText) lowValueText.gameObject.SetActive(true);
         }
 
-        // 设置标题
+        // set title
         if (headerText)
             headerText.text = $"Description of {UpperFirst(layerType)} layer";
 
-        // 加载 high/low + description
+        // load high/low + description
         ApplyLayerInfo(layerType);
 
-        // 加载材质
+        // load render
         LoadColorbarMaterial(layerType);
     }
 
@@ -90,7 +81,7 @@ public class ColorbarPanelController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // 加载材质
+    // load corresponding colorbar material based on the layer type
     private void LoadColorbarMaterial(string layerType)
     {
         if (colorbarRenderer == null) return;
@@ -101,15 +92,11 @@ public class ColorbarPanelController : MonoBehaviour
         if (mat != null)
         {
             colorbarRenderer.material = mat;
-            Debug.Log($"[ColorbarPanel] Loaded material {path}");
         }
-        else
-        {
-            Debug.LogWarning($"[ColorbarPanel] Material not found at {path}");
-        }
+
     }
 
-    // high / low / description
+    // load high+low+description
     private void ApplyLayerInfo(string layerType)
     {
         if (layerData == null || layerData.layers == null) return;
@@ -117,15 +104,6 @@ public class ColorbarPanelController : MonoBehaviour
         LayerInfo layer = layerData.layers.Find(
             l => l.type.ToLower() == layerType.ToLower()
         );
-
-        if (layer == null)
-        {
-            Debug.LogWarning($"[ColorbarPanel] No layer info for {layerType}");
-            if (highValueText) highValueText.text = "-";
-            if (lowValueText) lowValueText.text = "-";
-            if (colorbarInfoText) colorbarInfoText.text = "No description available.";
-            return;
-        }
 
         if (lowValueText) lowValueText.text = layer.low;
         if (highValueText) highValueText.text = layer.high;

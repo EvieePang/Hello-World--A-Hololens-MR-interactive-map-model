@@ -5,14 +5,15 @@ using MixedReality.Toolkit.UX;
 public class MRTKSliderScrollBinder : MonoBehaviour
 {
     public ScrollRect scrollRect;
-    public MixedReality.Toolkit.UX.Slider slider;   // MRTK Slider, NOT Unity UI Slider
+    public MixedReality.Toolkit.UX.Slider slider;   
 
     private void Awake()
     {
-        // 当 MRTK Slider 改变数值时调用
+        //call when MRTK Slider's value change
         slider.OnValueUpdated.AddListener(OnSliderValueUpdated);
     }
 
+    // tie the value of MRTK Slider with the scroll view vertical position
     private void OnSliderValueUpdated(SliderEventData data)
     {
         float v = data.NewValue;  // 0~1
