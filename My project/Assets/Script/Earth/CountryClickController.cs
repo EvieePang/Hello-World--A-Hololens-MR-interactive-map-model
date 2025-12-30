@@ -7,31 +7,23 @@ using UnityEngine;
 public class CountryClickController : MonoBehaviour
 {
     [Header("Country Root")]
-    // Parent transform containing all country GameObjects
     public Transform countriesParent;
 
     [Header("Scene References")]
-    // Transform of the Earth model used for rotation and scaling
     public Transform earthTransform;
-    // Main camera transform used to align the selected country to the view
     public Transform cameraTransform;
 
     [Header("Audio")]
-    // Audio source for playing country-specific sound clips
     public AudioSource audioSource;
 
     [Header("Sub Controllers")]
-    // Controller responsible for generating and displaying country borders
     public CountryBorderController borderController;
-    // Controller responsible for creating and managing country labels
     public CountryLabelController labelController;
 
     [Header("Highlight Settings")]
-    // Alpha value applied to the selected country's surface material
     [Range(0, 1)] public float transparentAlpha = 1.0f;
 
     [Header("Camera Movement")]
-    // Speed factor controlling the rotation and zoom animation
     public float rotationSpeed = 1.5f;
 
     [HideInInspector] public bool isAnyCountryActive = false;
@@ -41,8 +33,6 @@ public class CountryClickController : MonoBehaviour
     private Coroutine currentAnim;
     private Vector3 baseScale;
     private List<GameObject> highlightedCountries = new List<GameObject>();
-
-    // Name of the currently selected country (global reference)
     public static string selectedCountry;
 
     // -------- Utility --------
@@ -103,7 +93,6 @@ public class CountryClickController : MonoBehaviour
     //    FocusCountry(country);
     //}
 
-    // Focus / select a country
     // Core method that handles country selection and triggers all visual and audio responses
     public void FocusCountry(GameObject country)
     {

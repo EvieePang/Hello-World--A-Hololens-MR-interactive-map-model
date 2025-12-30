@@ -7,15 +7,15 @@ public class RenameCountries : EditorWindow
     [MenuItem("Tools/Rename Countries to English")]
     static void Rename()
     {
-        // 找到场景中的 EarthCountries 节点
+        // find EarthCountries
         GameObject earthCountries = GameObject.Find("Earth/EarthCountries");
         if (earthCountries == null)
         {
-            Debug.LogError("❌ 找不到 EarthCountries 对象！");
+            Debug.LogError("Unable to find the EarthCountries object!");
             return;
         }
 
-        // 映射表（俄语 -> 英语）
+        // Mapping table
         Dictionary<string, string> nameMap = new Dictionary<string, string>()
 {
     {"Abkhazia", "Abkhazia"},
@@ -211,6 +211,6 @@ public class RenameCountries : EditorWindow
             }
         }
 
-        Debug.Log($"✅ 重命名完成：共修改 {changed} 个国家。");
+        Debug.Log($"Renaming completed: A total of {changed} countries were modified.");
     }
 }

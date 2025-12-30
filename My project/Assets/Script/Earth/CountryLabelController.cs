@@ -3,9 +3,6 @@ using TMPro;
 using UnityEngine;
 
 // Controls creation, placement, orientation, and level-of-detail (LOD) behavior of country name labels.
-/// <summary>
-/// Manages country name labels: creation + LOD (fade in/out with earth scale).
-/// </summary>
 public class CountryLabelController : MonoBehaviour
 {
     [Header("Refs")]
@@ -146,7 +143,7 @@ public class CountryLabelController : MonoBehaviour
                 bestComponent = comp;
         }
 
-        //  Use the centroid of the largest component as the label anchor ---
+        //  Use the centroid of the largest component as the label anchor
         Vector3 avg = Vector3.zero;
         foreach (int id in bestComponent)
             avg += country.transform.TransformPoint(vertices[id]);
