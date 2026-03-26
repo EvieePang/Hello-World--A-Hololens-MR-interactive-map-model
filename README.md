@@ -43,8 +43,6 @@ If voice commands do not work:
 - Click **Fix All** to refresh the XR configuration
 - Re-enter Play Mode — voice interaction should now work correctly
 
-You can also refer to the [demo video](https://your-demo-video-link.com) for an example of both hand and voice interaction.
-
 ### 4. Map Layer Menu Initialization
 
 After a country is selected, the map layer menu will only appear once your **left hand** is detected within the HoloLens tracking range.
