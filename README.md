@@ -70,6 +70,6 @@ This step is important to correctly reset the interaction state.
 
 For a more intuitive understanding of the interaction workflow, please watch our demo video:
 
-[Demo Video Link](https://drive.google.com/file/d/1kXYoKnjLMLGT4QSnS03a-AfypcyluSk9/view?usp=drive_link)
+[Demo Video Link](https://drive.google.com/file/d/1kXYoKnjLMLGT4QSnS03a-AfypcyluSk9/view?usp=sharing)
 
 The video demonstrates the complete process step by step, including scaling, country selection, voice interaction, and menu manipulation.
